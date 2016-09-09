@@ -3,14 +3,19 @@
  */
 import './assets';
 
-import React, { Component } from "react";
-import { render } from "react-dom";
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  Router,
+  Route,
+  IndexRoute
+} from 'react-router';
+import { useBasename, createHistory } from 'history';
 
 import NotFound from "./components/NotFound";
 import Main from "./components/Main";
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
     this.ONE_SECOND = 1000;
@@ -40,7 +45,12 @@ class App extends Component {
   }
 }
 
-render(
+const browserHistory = useBasename(createHistory)({
+  basename: document.getElementsByTagName('base')[0].getAttribute('href')
+});
+
+
+ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Main}/>
@@ -48,5 +58,5 @@ render(
       <Route path="*" component={NotFound}/>
     </Route>
   </Router>,
-  document.getElementById('app')
+  document.getElementById('daggerok.github.io.react')
 );

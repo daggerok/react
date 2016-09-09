@@ -11,11 +11,12 @@ const assetsInclude   = [path.resolve(process.cwd(), './src/assets')];
 const bsInclude = [path.resolve(process.cwd(), './node_modules/bootstrap/dist')];
 const config = {
   entry: {
-    app: ['babel-polyfill', './src/main.js']
+    'daggerok.github.io.react': ['babel-polyfill', './src/main.js']
   },
   output: {
-    path: './dist',
-    filename: '[name].[hash].js',
+    path: `./dist`,
+    publicPath: '/react/dist',
+    filename: '[name].bundle.js',
     sourceMapFilename: 'maps/[file].map'
   },
   module: {
@@ -73,10 +74,10 @@ const config = {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    new ExtractPlugin('[name].[hash].css', { allChunks: true }),
+    new ExtractPlugin('[name].bundle.css', { allChunks: true }),
     new HtmlWebpackPlugin({
       template: './src/assets/index.hbs',
-      filename: `${__dirname}/../index.html`
+      filename: `../index.html`
     })
   ],
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
@@ -84,7 +85,8 @@ const config = {
   devServer: {
     historyApiFallback: true,
     inline:   true,
-    progress: true
+    progress: true,
+    contentBase: '/react'
   }
 };
 
