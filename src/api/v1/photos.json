@@ -1,0 +1,10 @@
+[
+  {
+    "id": "doge",
+    "uri": "/api/v1/protos/doge.png"
+  },
+  {
+    "id": "kote",
+    "uri": "/api/v1/protos/kote.jpg"
+  }
+]
