@@ -27,7 +27,7 @@ export default () => (
 
       <div class='small muted'>
         using ancii text
-        <a target='_blank' href='http://patorjk.com/software/taag/#p=display&f=Train&t=%20_404'>
+        &nbsp;<a target='_blank' href='http://patorjk.com/software/taag/#p=display&f=Train&t=%20_404'>
           from here
         </a>
       </div>
