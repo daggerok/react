@@ -2,13 +2,14 @@ import React from 'react';
 // only for linter, because of webpack provided plugin
 import $ from 'jquery';
 
+import { baseHref } from '../../routes';
 import GridItem from './PhotoGrid/GridItem';
 
 export default class PhotoGrid extends React.Component {
   constructor() {
     super();
     this.state = { photos: [] };
-    this.uri = './api/v1/photos.json';
+    this.uri = `${baseHref}api/v1/photos.json`;
     this.getPhotos = this.getPhotos.bind(this);
   }
 
@@ -37,4 +38,3 @@ export default class PhotoGrid extends React.Component {
     );
   }
 }
-

@@ -19,8 +19,8 @@ const include = resolve('./src');
 export default {
   entry: {
     'app': [
-      './src/vendors.jsx',
-      './src/main.jsx'
+      './src/vendors.js',
+      './src/main.js'
     ],
   },
 
@@ -47,20 +47,6 @@ export default {
       {
         include,
         test: /\.js$/,
-        loader: 'babel',
-        query: {
-          presets: [
-            'stage-0',
-            'es2015',
-          ],
-          plugins: [
-            'add-module-exports',
-          ]
-        }
-      },
-      {
-        test: /\.jsx$/,
-        include,
         loader: 'babel',
         query: {
           presets: [
@@ -108,7 +94,7 @@ export default {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['', '.js', '.json'],
     modulesDirectories: ['node_modules']
   },
 

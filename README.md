@@ -19,5 +19,6 @@ fish bin/gh-pages.fish
 ```
 
 webpack-dev-server / browser-sync:
+
 - proxy /api/ -> http://localhost:8080/api/
 - any fallbacks -> /react/index.html
