@@ -7,7 +7,9 @@ import {
 import { Provider } from 'react-redux';
 
 import store, { history } from './redux/store';
+
 import App from './components/App';
+
 import PhotoGrid from './components/App/PhotoGrid';
 import PhotoView from './components/App/PhotoGrid/PhotoView';
 import Contact from './components/App/Contact';
