@@ -1,10 +1,14 @@
 [
   {
     "id": "doge",
-    "uri": "/api/v1/protos/doge.png"
+    "uri": "api/v1/photos/doge.png"
   },
   {
     "id": "kote",
-    "uri": "/api/v1/protos/kote.jpg"
+    "uri": "api/v1/photos/kote.jpg"
+  },
+  {
+    "id": "pooh",
+    "uri": "api/v1/photos/pooh.png"
   }
 ]

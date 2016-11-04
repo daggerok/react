@@ -1,0 +1,10 @@
+{
+  "base": {
+    "href": "/react/"
+  },
+  "api": {
+    "photos": {
+      "uri": "api/v1/photos.json"
+    }
+  }
+}

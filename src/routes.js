@@ -6,6 +6,8 @@ import {
 } from 'react-router';
 import { Provider } from 'react-redux';
 
+import settings from './settings.json';
+
 import store, { history } from './redux/store';
 
 import App from './components/App';
@@ -16,12 +18,11 @@ import Contact from './components/App/Contact';
 import About from './components/App/About';
 import NotFound from './components/App/NotFound';
 
-export const baseHref = '/react/';
 
 export default () => (
   <Provider store={store}>
     <Router history={history}>
-      <Route path={baseHref} component={App}>
+      <Route path={settings.base.href} component={App}>
         <IndexRoute component={PhotoGrid}/>
         <Route path='view/:id' component={PhotoView}/>
         <Route path='contact' component={Contact}/>
