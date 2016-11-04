@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import './Header.styl';
-import { baseHref } from '../../../routes';
+import { base } from '../../../settings.json';
 
 export default () => (
   <header id='nav-header'>
-    <Link to={baseHref}
+    <Link to={base.href}
           class=""
           activeClassName='active'>Gallery</Link>
   </header>

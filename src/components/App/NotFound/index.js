@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import './NotFound.styl';
-import { baseHref } from '../../../routes';
+import { base } from '../../../settings.json';
 
 export default () => (
   <div class='text-center'>
@@ -33,6 +33,6 @@ export default () => (
       </div>
     </div>
 
-    <Link class='btn btn-block' to={baseHref}>GO HOME</Link>
+    <Link class='btn btn-block' to={base.href}>GO HOME</Link>
   </div>
 );

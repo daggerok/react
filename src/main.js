@@ -10,13 +10,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import settings from './settings.json';
 import Application from './routes';
-
 // // <base href="/react/">
-// head.write(`<base href=\"http://${document.location.host}${baseHref}\" />`);
+// head.write(`<base href=\"http://${document.location.host}${base.href}\" />`);
 
 const base = document.createElement('base');
-base.setAttribute('href', Application.baseHref);
+base.setAttribute('href', settings.base.href);
 
 const heads = document.getElementsByTagName('head');
 heads[0].append(base);
