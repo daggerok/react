@@ -11,9 +11,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import settings from './settings.json';
-import Application from './routes';
-// // <base href="/react/">
-// head.write(`<base href=\"http://${document.location.host}${base.href}\" />`);
 
 const base = document.createElement('base');
 base.setAttribute('href', settings.base.href);
@@ -21,7 +18,13 @@ base.setAttribute('href', settings.base.href);
 const heads = document.getElementsByTagName('head');
 heads[0].append(base);
 
+import Parent from './components/Parent';
+import Child from './components/Child';
+
 render(
-  <Application />,
+  <Parent>
+    <Child value="1"/>
+    <Child value="2"/>
+  </Parent>,
   document.getElementById('app')
 );

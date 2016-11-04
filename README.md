@@ -1,4 +1,4 @@
-# react-gallery [![build](https://travis-ci.org/daggerok/react.svg?branch=react-gallery)](https://travis-ci.org/daggerok/react)
+# fast-react-starter [![build](https://travis-ci.org/daggerok/react.svg?branch=fast-react-starter)](https://travis-ci.org/daggerok/react)
 
 https://daggerok.github.io/react/ site
 

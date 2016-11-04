@@ -1,5 +1,5 @@
 {
-  "name": "small-valery",
+  "name": "fast-react-starter",
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
@@ -123,14 +123,14 @@
   "main": "src/main.jsx",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daggerok/small-valery.github.com.git"
+    "url": "git+https://github.com/daggerok/fast-react-starter.git"
   },
   "keywords": [
     "react"
   ],
-  "author": "Maksim Kostromin",
+  "author": "Maksim Kostromin <daggerok@gmail.com>",
   "bugs": {
-    "url": "https://github.com/daggerok/small-valery.github.com/issues"
+    "url": "https://github.com/daggerok/fast-react-starter/issues"
   },
-  "homepage": "https://github.com/daggerok/small-valery.github.com#readme"
+  "homepage": "https://github.com/daggerok/fast-react-starter#readme"
 }
