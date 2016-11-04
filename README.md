@@ -1,4 +1,4 @@
-# fast-react-starter [![build](https://travis-ci.org/daggerok/react.svg?branch=fast-react-starter)](https://travis-ci.org/daggerok/react)
+# react-in-html [![build](https://travis-ci.org/daggerok/react.svg?branch=react-in-html)](https://travis-ci.org/daggerok/react)
 
 https://daggerok.github.io/react/ site
 
