@@ -1,27 +1,36 @@
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-  comments: state.components,
-});
+/*
+import React from 'react';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import './Main.styl';
+import Nav from './App/Nav';
 
-import addComponent from '../redux/actions/addComment';
-import removeComment from '../redux/actions/removeComment';
-import incrementLikes from '../redux/actions/incrementLikes';
+export default class Main extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-import Main from './Main';
+  render() {
+    return (
+      <div>
+        <Nav/>
+        <div id="content" class="container-fluid">
+          {React.cloneElement(this.props.children, {...this.props})}
+        </div>
+      </div>
+    );
+  }
+}
+*/
+import React from 'react';
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  addComponent,
-  removeComment,
-  incrementLikes,
-  dispatch
-});
+import './App.styl';
+import Nav from './App/Nav';
 
-const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default (props) => (
+  <div>
+    <Nav/>
+    <div id="content" class="container-fluid">
+      {React.cloneElement(props.children, {...props})}
+    </div>
+  </div>
 );
-
-export default App(Main);

@@ -1,5 +1,4 @@
 import React from 'react';
-// only for linter, because of webpack provided plugin
 import $ from 'jquery';
 
 import { base, api } from '../../settings.json';
@@ -8,15 +7,15 @@ import GridItem from './PhotoGrid/GridItem';
 export default class PhotoGrid extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { photos: [] };
+    this.state = { ids: [] };
     this.uri = base.href + api.photos.uri;
     this.getPhotos = this.getPhotos.bind(this);
   }
 
   getPhotos() {
     return $.getJSON(this.uri).then(
-      photos => this.setState({ photos }),
-      err => console.error('can\'t fetch photos')
+      ids => this.setState({ ids }),
+      err => console.error(`can't fetch photos`)
     );
   }
 
@@ -33,9 +32,7 @@ export default class PhotoGrid extends React.Component {
   render() {
     return (
       <div class="row">
-        {this.state.photos.map((p, id) => <GridItem {...this.props}
-                                                    key={id}
-                                                    photo={p}/>)}
+        {this.state.ids.map((id, key) => <GridItem {...this.props} key={key} id={id}/>)}
       </div>
     );
   }

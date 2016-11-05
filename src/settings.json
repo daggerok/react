@@ -4,7 +4,9 @@
   },
   "api": {
     "photos": {
-      "uri": "api/v1/photos.json"
+      "uri": "api/v1/photos.json",
+      "base": "api/v1/photos/"
     }
-  }
+  },
+  "size": "400px"
 }

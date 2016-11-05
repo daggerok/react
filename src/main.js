@@ -12,13 +12,11 @@ import { render } from 'react-dom';
 
 import settings from './settings.json';
 import Application from './routes';
-// // <base href="/react/">
-// head.write(`<base href=\"http://${document.location.host}${base.href}\" />`);
 
 const base = document.createElement('base');
-base.setAttribute('href', settings.base.href);
-
 const heads = document.getElementsByTagName('head');
+
+base.setAttribute('href', settings.base.href);
 heads[0].append(base);
 
 render(

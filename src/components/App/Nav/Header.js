@@ -7,7 +7,6 @@ import { base } from '../../../settings.json';
 export default () => (
   <header id='nav-header'>
     <Link to={base.href}
-          class=""
-          activeClassName='active'>Gallery</Link>
+          activeClassName='active'>Little Valeria</Link>
   </header>
 );
