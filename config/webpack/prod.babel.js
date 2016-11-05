@@ -14,7 +14,7 @@ config.plugins = [
   new webpack.optimize.UglifyJsPlugin({
     mangle: {
       keep_fnames: true,
-    }
+    },
   }),
 
   new webpack.DefinePlugin({

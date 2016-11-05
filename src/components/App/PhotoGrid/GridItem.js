@@ -1,8 +1,15 @@
+/* eslint no-undef: "off" */
+
 import React from 'react';
 import { Link } from 'react-router';
 
 import './GridItem.styl';
 import { base, api, size } from '../../../settings.json';
+
+const width = $(window).width();
+const height = $(window).height();
+const curr = width < 320 || height < 568
+  ? (width > height ? height : width) : size;
 
 export default class PhotoGrid extends React.Component {
   constructor(props) {
@@ -13,13 +20,13 @@ export default class PhotoGrid extends React.Component {
   render() {
     const { id } = this.props;
     return (
-      <div class='col-xl-2 col-lg-3 col-md-4 col-xs-6'>
+      <div class='col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12 grid-container'>
         <Link to={`${base.href}view/${id}`}>
           <figure>
-            <img class='thumbnail grid-item'
-                 height={size}
-                 width={size}
-                 src={`${this.prefix}/${id}`}></img>
+            <img class='grid-item'
+                 height={curr}
+                 width={curr}
+                 src={`${this.prefix}/${id}`}/>
           </figure>
         </Link>
       </div>

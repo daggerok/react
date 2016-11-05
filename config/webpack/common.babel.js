@@ -11,7 +11,8 @@ const extractCSS = new ExtractPlugin('[name]-[hash].css', { allChunks: true });
 const resolve = (rel) => path.resolve(process.cwd(), rel);
 
 const vendors = /\/node_modules\//;
-const assets = /\.(raw|gif|png|jpg|jpeg|otf|eot|woff|woff2|ttf|svg|ico)$/;
+const assets = /\.(raw|gif|png|otf|eot|woff|woff2|ttf|svg|ico)$/i;
+const images = /\.jpe?g$/i;
 
 const resources = resolve('./src/resources');
 const include = resolve('./src');
@@ -39,6 +40,15 @@ export default {
     }],
 
     loaders: [
+      {
+        include: [resolve('./src/api/v1/photos')],
+        exclude: [vendors, resources],
+        test: images,
+        loaders: [
+          'file?name=[path]/[name].[ext]',
+          'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}'
+        ]
+      },
       {
         include,
         test: /\.json$/,
@@ -89,8 +99,8 @@ export default {
         exclude: [vendors, resources],
         loader: 'file?name=[path]/[name].[ext]',
         test: assets,
-      },
-    ],
+      }
+    ]
   },
 
   resolve: {
