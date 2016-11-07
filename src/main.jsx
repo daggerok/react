@@ -1,4 +1,4 @@
 ReactDOM.render(
-  <HiForm/>,
+  <HiInputDisplay name='Max'/>,
   document.getElementById('app')
 );
