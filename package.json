@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "complete-react",
   "version": "0.0.1",
   "license": "ISC",
   "private": true,
@@ -12,20 +12,24 @@
     "babel": "babel ./src --minified -o ./app.js",
     "build": "npm-run-all stylus babel html:prod",
     "stylus": "stylus ./src/main.styl -o ./app.css",
+    "postinstall": "bower install jquery bootstrap",
     "prestart": "cp -Rf ./index.dev.html ./index.html",
-    "html:prod": "cp -Rf ./index.prod.html ./index.html",
     "start": "npm-run-all -p stylus server babel-watch",
-    "postinstall": "bower install react jquery bootstrap",
+    "html:prod": "cp -Rf ./index.prod.html ./index.html",
     "server": "lite-server --config ./config/lite-server.js"
   },
   "config": {
     "bower_directory": "vendors"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.7",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-class-properties": "^6.16.0",
@@ -46,7 +50,8 @@
     "lite-server": "^2.2.2",
     "npm-run-all": "^3.1.1",
     "rimraf": "^2.5.4",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "webpack": "^1.13.3"
   },
   "babel": {
     "presets": [
