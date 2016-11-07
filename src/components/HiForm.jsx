@@ -21,7 +21,10 @@ class HiForm extends React.Component {
 
   onButtonClick(e) {
     e.preventDefault();
-    this.setState({ name: this.in.value });
+    const ref = this.in;
+    if (ref && ref.value && ref.value.trim().length > 0) {
+      this.setState({ name: ref.value.trim() });
+    }
     this.in.value = '';
   }
 
