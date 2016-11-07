@@ -33,3 +33,7 @@ Thumbs.db
 
 # project specific paths
 .gitignore-e
+
+/app.css
+/app.js
+vendors/
