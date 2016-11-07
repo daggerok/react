@@ -1,4 +1,4 @@
 ReactDOM.render(
-  <Hi/>,
+  <HiForm/>,
   document.getElementById('app')
 );
