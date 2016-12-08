@@ -6,18 +6,16 @@
  * that can be found in the LICENSE file. at https://github.com/daggerok/angular2/LICENSE
  */
 /* eslint no-unused-vars: "off" */
+import React        from 'react';
+import { render }   from 'react-dom';
+import $            from 'jquery';
 
-import React from 'react';
-import { render } from 'react-dom';
+import Application  from './routes';
+import settings     from './settings.json';
 
-import settings from './settings.json';
-import Application from './routes';
-
-const base = document.createElement('base');
-const heads = document.getElementsByTagName('head');
-
-base.setAttribute('href', settings.base.href);
-heads[0].append(base);
+$('head')
+  .append($('base')
+    .attr('href', settings.base.href));
 
 render(
   <Application />,

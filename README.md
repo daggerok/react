@@ -1,4 +1,4 @@
-# react-gallery [![build](https://travis-ci.org/daggerok/react.svg?branch=react-gallery)](https://travis-ci.org/daggerok/react)
+# gallery [![build](https://travis-ci.org/daggerok/react.svg?branch=gallery)](https://travis-ci.org/daggerok/react)
 
 https://daggerok.github.io/react/ site
 

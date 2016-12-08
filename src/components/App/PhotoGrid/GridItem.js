@@ -1,10 +1,9 @@
 /* eslint no-undef: "off" */
+import React                from 'react';
+import { Link }             from 'react-router';
 
-import React from 'react';
-import { Link } from 'react-router';
-
+import { base, api, size }  from '../../../settings.json';
 import './GridItem.styl';
-import { base, api, size } from '../../../settings.json';
 
 const width = $(window).width();
 const height = $(window).height();

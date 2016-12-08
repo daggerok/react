@@ -1,12 +1,12 @@
-import React from 'react';
+import React    from 'react';
 import { Link } from 'react-router';
 
-import './NotFound.styl';
 import { base } from '../../../settings.json';
+import './NotFound.styl';
 
 export default () => (
   <div class='text-center'>
-    <h2>):</h2>
+    <h1> ¯\_(ツ)_/¯ </h1>
 
     <pre class='error-container'>
       {`

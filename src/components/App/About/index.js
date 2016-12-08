@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => (
-  <h3>about page</h3>
+  <h1 class="text-center"> ¯\_(ツ)_/¯ </h1>
 );

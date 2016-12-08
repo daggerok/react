@@ -1,10 +1,8 @@
-import React from 'react';
+import React    from 'react';
 import { Link } from 'react-router';
 
-import './Links.styl';
-
-// base.href
 import { base } from '../../../settings.json';
+import './Links.styl';
 
 export default () => (
   <ul class='nav navbar-nav'>

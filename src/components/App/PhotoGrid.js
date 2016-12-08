@@ -1,10 +1,9 @@
 /* eslint no-undef: "off" */
+import React          from 'react';
+import $              from 'jquery';
 
-import React from 'react';
-import $ from 'jquery';
-
-import { base, api } from '../../settings.json';
-import GridItem from './PhotoGrid/GridItem';
+import { base, api }  from '../../settings.json';
+import GridItem       from './PhotoGrid/GridItem';
 
 export default class PhotoGrid extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export default class PhotoGrid extends React.Component {
   getPhotos() {
     return $.getJSON(this.uri).then(
       ids => this.setState({ ids }),
-      err => console.error(`can't fetch photos`)
+      err => console.error('can\'t fetch photos')
     );
   }
 

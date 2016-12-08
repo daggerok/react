@@ -1,8 +1,8 @@
 /*
-import React from 'react';
+import React  from 'react';
 
+import Nav    from './App/Nav';
 import './Main.styl';
-import Nav from './App/Nav';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -21,10 +21,10 @@ export default class Main extends React.Component {
   }
 }
 */
-import React from 'react';
+import React  from 'react';
 
+import Nav    from './App/Nav';
 import './App.styl';
-import Nav from './App/Nav';
 
 export default (props) => (
   <div>
