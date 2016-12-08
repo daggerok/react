@@ -16,7 +16,7 @@ before_install:
 script:
   - npm i
   - npm run lint
-  - npm run webpack
   - npm run build
+  - npm run webpack
   - if [ -f npm-debug.log ]; then cat npm-debug.log; fi
 cache.directories: node_modules/

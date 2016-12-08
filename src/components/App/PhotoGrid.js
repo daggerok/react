@@ -17,7 +17,7 @@ export default class PhotoGrid extends React.Component {
   getPhotos() {
     return $.getJSON(this.uri).then(
       ids => this.setState({ ids }),
-      err => console.error(`can't fetch photos`)
+      err => console.error('can\'t fetch photos')
     );
   }
 
