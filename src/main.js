@@ -1,25 +1,17 @@
-/**
- * @license
- * Copyright daggerok. All rights reserved.
- *
- * Use of this source code is governed by a ISC-style license
- * that can be found in the LICENSE file. at https://github.com/daggerok/angular2/LICENSE
- */
-/* eslint no-unused-vars: "off" */
-
 import React from 'react';
 import { render } from 'react-dom';
 
-import settings from './settings.json';
-import Application from './routes';
+import Application from './app/routes';
+import { base } from './app/settings.json';
 
-const base = document.createElement('base');
-const heads = document.getElementsByTagName('head');
+const headElement = document.getElementsByTagName('head')[0];
+const baseElement = document.createElement('base');
+const { href } = base;
 
-base.setAttribute('href', settings.base.href);
-heads[0].append(base);
+baseElement.setAttribute('href', href);
+headElement.append(baseElement);
 
 render(
   <Application />,
-  document.getElementById('app')
+  document.querySelector('.app')
 );

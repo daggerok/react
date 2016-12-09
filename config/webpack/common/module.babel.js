@@ -7,7 +7,7 @@ const resolvePath = (rel) => path.resolve(process.cwd(), rel);
 const resources = resolvePath('./src/resources');
 const include = resolvePath('./src');
 
-const vendors = /\/node_modules\//;
+const exclude = /\/node_modules\//;
 const assets = /\.(raw|gif|png|otf|eot|woff|woff2|ttf|svg|ico)$/i;
 const images = /\.jpe?g$/i;
 
@@ -17,21 +17,21 @@ export default {
       include,
       test: /\.js$/i,
       loader: 'eslint',
-      exclude: vendors,
+      exclude,
     },
     {
       include,
+      exclude,
       test: /\.js$/i,
-      exclude: vendors,
       loader: 'source-map',
     }
   ],
 
   loaders: [
     {
-      include: [resolvePath('./src/api/v1/photos')],
-      exclude: [vendors, resources],
       test: images,
+      exclude: [exclude, resources],
+      include: [resolvePath('./src/api/v1/photos')],
       loaders: [
         'file?name=[path]/[name].[ext]',
         'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}'
@@ -39,11 +39,13 @@ export default {
     },
     {
       include,
+      exclude,
       test: /\.json$/i,
       loader: 'json',
     },
     {
       include,
+      exclude,
       test: /\.js$/i,
       loader: 'babel',
       query: {
@@ -60,33 +62,35 @@ export default {
       }
     },
     {
-      test: /\.css$/i,
       include: [
         resolvePath('./node_modules/angular'),
         resolvePath('./node_modules/bootstrap/dist'),
         include,
       ],
+      test: /\.css$/i,
       loader: extractCSS.extract('style', 'css?importloader=1&sourceMap', 'postcss'),
     },
     {
+      exclude,
       include,
       test: /\.styl$/i,
       loader: extractCSS.extract('style', 'css!postcss!stylus?sourceMap'),
     },
     {
-      include: vendors,
+      include: exclude,
       loader: 'file?name=vendors/[1]&regExp=node_modules/(.*)',
       test: assets,
     },
     {
+      exclude,
       include: resources,
       loader: 'file?name=resources/[1]&regExp=src/resources/(.*)',
       test: assets,
     },
     {
-      exclude: [vendors, resources],
+      exclude: [exclude, resources],
       loader: 'file?name=[path]/[name].[ext]',
       test: assets,
     }
-  ]
+  ],
 };
