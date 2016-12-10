@@ -3,10 +3,11 @@
     "href": "/react/"
   },
   "api": {
-    "photos": {
-      "uri": "api/v1/photos.json",
-      "base": "api/v1/photos/"
+    "youtube": {
+      "key": "AIzaSyCpUzkM9k-yZx8w0-2kTIehh8S2D1Fs3Xs"
+    },
+    "videos": {
+      "uri": "./api/v1/videos.json"
     }
-  },
-  "size": "400px"
+  }
 }

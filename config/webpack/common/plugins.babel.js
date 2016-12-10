@@ -20,8 +20,7 @@ export default [
   }),
   new NoErrorsPlugin(),
   new HtmlWebpackPlugin({
-    // // spa fallback (prod, ie github pages only):
-    // filename: `404.html`,
+    // // spa fallback (prod, ie github pages only): ¯\_(ツ)_/¯,
     favicon: './src/assets/favicon.ico',
     template: './src/assets/index.html',
     minify: {
@@ -35,7 +34,7 @@ export default [
     defaultAttribute: 'defer',
   }),
   new CopyWebpackPlugin([
-    { from: './src/api', to: 'api' }
+    { from: './src/api', to: 'api' },
   ]),
   new ProvidePlugin({
     jQuery: 'jquery',

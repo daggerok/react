@@ -1,15 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
+import $ from 'jquery';
 
 import Application from './app/routes';
-import { base } from './app/settings.json';
+import settings from './app/settings.json';
 
-const headElement = document.getElementsByTagName('head')[0];
-const baseElement = document.createElement('base');
-const { href } = base;
-
-baseElement.setAttribute('href', href);
-headElement.append(baseElement);
+$('head')
+  .append($('base')
+    .attr('href', settings.base.href));
 
 render(
   <Application />,

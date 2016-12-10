@@ -24,7 +24,7 @@ export default {
       exclude,
       test: /\.js$/i,
       loader: 'source-map',
-    }
+    },
   ],
 
   loaders: [
@@ -34,8 +34,8 @@ export default {
       include: [resolvePath('./src/api/v1/photos')],
       loaders: [
         'file?name=[path]/[name].[ext]',
-        'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}'
-      ]
+        'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}',
+      ],
     },
     {
       include,
@@ -52,14 +52,14 @@ export default {
         presets: [
           'stage-0',
           'es2015',
-          'react'
+          'react',
         ],
         plugins: [
           'react-html-attrs',
           'add-module-exports',
-          'transform-class-properties'
-        ]
-      }
+          'transform-class-properties',
+        ],
+      },
     },
     {
       include: [
@@ -91,6 +91,6 @@ export default {
       exclude: [exclude, resources],
       loader: 'file?name=[path]/[name].[ext]',
       test: assets,
-    }
+    },
   ],
 };
