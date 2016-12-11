@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default ({ keyUp }) => (
+export default ({ change }) => (
   <div class='form-group search-video-bar'>
-    <input placeholder='search by enter'
-           onKeyUp={e => keyUp(e)}
+    <input onChange={event => change(event.target.value)}
+           placeholder='search by typing...'
            class='form-control'
            type='text' />
   </div>

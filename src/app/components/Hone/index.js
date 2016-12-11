@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import YouTubeSearch        from 'youtube-api-search';
-import                           './Home.styl';
-import SearchVideoBar       from './SearchVideoBar';
-import VideoDetails         from './VideoDetails';
-import VideoList            from './VideoList';
-import { api }              from '../../settings.json';
+import React, { Component }   from 'react';
+import YouTubeSearch          from 'youtube-api-search';
+import _                      from 'lodash';
+import                             './Home.styl';
+import SearchVideoBarByTyping from './SearchVideoBarByTyping';
+import SearchVideoBar         from './SearchVideoBar';
+import VideoDetails           from './VideoDetails';
+import VideoList              from './VideoList';
+import { api }                from '../../settings.json';
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Home extends Component {
       curr: null,
     };
 
+    this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
     this.search = this.search.bind(this);
 
@@ -43,15 +46,22 @@ export default class Home extends Component {
     const { target, keyCode } = event;
     this.setState({ term: target.value });
     if (this.enter() === keyCode) {
-      target.value = '';
       this.search();
+      target.value = '';
     }
   }
 
+  onChange(term) {
+    this.setState({ term });
+    this.search();
+  }
+
   render() {
+    const change = _.debounce(term => this.onChange(term), 500);
     return (
       <div>
         <SearchVideoBar keyUp={this.onKeyUp} />
+        <SearchVideoBarByTyping change={change} />
         <VideoDetails video={this.state.curr} />
         <VideoList
           selectVideo={curr => this.setState({ curr })}
