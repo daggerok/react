@@ -1,10 +1,12 @@
 import React    from 'react';
 import { Link } from 'react-router';
 import               './NotFound.styl';
+import Nav      from './Nav';
 import { base } from '../../../settings.json';
 
 export default () => (
   <div class='text-center'>
+    <Nav />
 
     <h1> ¯\_(ツ)_/¯ </h1>
 

@@ -7,8 +7,8 @@ import {
   applyRouterMiddleware } from 'react-router';
 import { useScroll }      from 'react-router-scroll';
 
-import App                from './components/App/index';
-import Home               from './components/Hone/index';
+import App                from './components/App';
+import Home               from './components/Home';
 import NotFound           from './components/App/NotFound';
 import { base }           from './settings.json';
 
