@@ -1,17 +1,16 @@
-import React            from 'react';
+import React              from 'react';
 import {
   Router,
   Route,
   IndexRoute,
   browserHistory,
-  applyRouterMiddleware,
-} from 'react-router';
-import { useScroll }    from 'react-router-scroll';
+  applyRouterMiddleware } from 'react-router';
+import { useScroll }      from 'react-router-scroll';
 
-import App              from './components/App/index';
-import Home             from './components/Hone/index';
-import NotFound         from './components/App/NotFound';
-import { base }         from './settings.json';
+import App                from './components/App/index';
+import Home               from './components/Hone/index';
+import NotFound           from './components/App/NotFound';
+import { base }           from './settings.json';
 
 export default () => (
   <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
