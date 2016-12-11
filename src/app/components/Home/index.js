@@ -60,8 +60,10 @@ export default class Home extends Component {
     const change = _.debounce(term => this.onChange(term), 500);
     return (
       <div>
-        <SearchVideoBar keyUp={this.onKeyUp} />
-        <SearchVideoBarByTyping change={change} />
+        <div class='form-group row'>
+          <SearchVideoBar keyUp={this.onKeyUp} />
+          <SearchVideoBarByTyping change={change} />
+        </div>
         <VideoDetails video={this.state.curr} />
         <VideoList
           selectVideo={curr => this.setState({ curr })}

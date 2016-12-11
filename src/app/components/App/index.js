@@ -2,14 +2,11 @@
 // import React, { cloneElement } from 'react';
 import React, { Component } from 'react';
 import                           './App.styl';
-import Nav                  from './Nav';
-import Home                 from '../Hone/';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <div id="content" class="container-fluid">
           {/* {this.props && this.props.children ? cloneElement(this.props.children, {...this.props}) : createElement('Home')} */}
           {this.props.children}

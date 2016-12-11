@@ -1,4 +1,14 @@
-# redux [![build](https://travis-ci.org/daggerok/react.svg?branch=redux)](https://travis-ci.org/daggerok/react)
+# top-5-tube [![build](https://travis-ci.org/daggerok/react.svg?branch=top-5-tube)](https://travis-ci.org/daggerok/react)
+
+top 5 youtube video search
+
+stack:
+- react
+- youtube-api-search
+- jquery
+- lodash
+- stylus
+- bootstrap
 
 ```bash
 npm i
