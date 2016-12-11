@@ -1,8 +1,7 @@
 import React    from 'react';
 import { Link } from 'react-router';
-
+import               './Header.styl';
 import { base } from '../../../settings.json';
-import './Header.styl';
 
 export default () => (
   <header id='nav-header'>

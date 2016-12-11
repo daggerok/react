@@ -1,8 +1,7 @@
 import React    from 'react';
 import { Link } from 'react-router';
-
+import               './Links.styl';
 import { base } from '../../../settings.json';
-import './Links.styl';
 
 const { href } = base;
 

@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default (props) => (
+export default ({ keyUp }) => (
   <div class='form-group search-video-bar'>
-    <input onChange={e => props.itemChanged(e)}
-           onKeyUp={e => props.keyUp(e)}
-           type='text'
-           class='form-control' />
+    <input onKeyUp={e => keyUp(e)}
+           class='form-control'
+           type='text' />
   </div>
 );

@@ -1,10 +1,9 @@
 // import React, { Component, cloneElement, createElement } from 'react';
 // import React, { cloneElement } from 'react';
 import React, { Component } from 'react';
-
+import                           './App.styl';
 import Nav                  from './Nav';
 import Home                 from '../Hone/';
-import './App.styl';
 
 export default class App extends Component {
   render() {

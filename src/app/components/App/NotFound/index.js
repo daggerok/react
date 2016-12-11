@@ -1,8 +1,7 @@
 import React    from 'react';
 import { Link } from 'react-router';
-
+import               './NotFound.styl';
 import { base } from '../../../settings.json';
-import './index.styl';
 
 export default () => (
   <div class='text-center'>
