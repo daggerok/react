@@ -6,6 +6,8 @@ import VideoDetails         from './VideoDetails';
 import VideoList            from './VideoList';
 import { api }              from '../../settings.json';
 
+import './Home.styl';
+
 export default class Home extends Component {
   constructor(props) {
     super(props);

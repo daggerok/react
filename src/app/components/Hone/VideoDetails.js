@@ -8,7 +8,7 @@ export default ({ video, selectVideo }) => {
   }
 
   return (
-    <div class='col-m-8'>
+    <div class='col-md-8 video-details'>
       <div class='embed-responsive embed-responsive-16by9'>
         <iframe
           src={`${api.youtube.base}/embed/${video.id.videoId}`}
