@@ -1,4 +1,4 @@
-# top-5-tube [![build](https://travis-ci.org/daggerok/react.svg?branch=redux)](https://travis-ci.org/daggerok/react)
+# redux [![build](https://travis-ci.org/daggerok/react.svg?branch=redux)](https://travis-ci.org/daggerok/react)
 
 stack:
 - react

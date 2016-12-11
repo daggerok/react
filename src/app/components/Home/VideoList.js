@@ -1,21 +1,22 @@
 import React                from 'react';
-import Request              from 'react-http-request';
 
 import VideoListItem        from './VideoListItem';
 import YouTubeVideoListItem from './YouTubeVideoListItem.js';
 import { base, api, }       from '../../settings.json';
 
-export default (props) => (
-  <div>
+export default ({ videos, selectVideo }) => (
+  <div class='video-list'>
     <ul class='col-md-4 list-group'>
-     {props.videos.map((video, key) => <YouTubeVideoListItem key={key}
-       onVideoSelect={props.selectVideo}
+     {videos.map((video, key) => <YouTubeVideoListItem key={key}
+       onVideoSelect={selectVideo}
        video={video} />)}
     </ul>
   </div>
 );
 
 /*
+import Request              from 'react-http-request';
+// ...
 <Request url={base.href + api.videos.uri}
          method='get'
          accept='application/json'

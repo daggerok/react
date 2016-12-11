@@ -9,8 +9,8 @@ import VideoList              from './VideoList';
 import { api }                from '../../settings.json';
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       term: 'react',
@@ -72,15 +72,3 @@ export default class Home extends Component {
     );
   }
 }
-
-/*
-const log = (event) => console.log('target', event.target.value);
-
-export default (props) => (
-  <div>
-    <SearchVideoBar log={log} />
-    <VideoDetails />
-    <VideoList />
-  </div>
-);
-*/

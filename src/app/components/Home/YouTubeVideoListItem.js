@@ -1,5 +1,5 @@
 import React from 'react';
-// href={'https://www.youtube.com/watch?v=' + props.id.videoId}>
+
 export default ({ video, onVideoSelect }) => (
   <li class='list-group-item youtube-video-list-item'>
     <div class='media'>
