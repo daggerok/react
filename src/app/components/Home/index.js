@@ -72,15 +72,3 @@ export default class Home extends Component {
     );
   }
 }
-
-/*
-const log = (event) => console.log('target', event.target.value);
-
-export default (props) => (
-  <div>
-    <SearchVideoBar log={log} />
-    <VideoDetails />
-    <VideoList />
-  </div>
-);
-*/

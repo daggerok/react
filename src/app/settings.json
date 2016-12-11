@@ -6,9 +6,6 @@
     "youtube": {
       "key": "AIzaSyCpUzkM9k-yZx8w0-2kTIehh8S2D1Fs3Xs",
       "base": "https://www.youtube.com"
-    },
-    "videos": {
-      "uri": "./api/v1/videos.json"
     }
   }
 }
