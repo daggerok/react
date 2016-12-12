@@ -1,10 +1,9 @@
-# redux [![build](https://travis-ci.org/daggerok/react.svg?branch=redux)](https://travis-ci.org/daggerok/react)
+# flux [![build](https://travis-ci.org/daggerok/react.svg?branch=flux)](https://travis-ci.org/daggerok/react)
 
 stack:
+- flux
 - react
-- youtube-api-search
 - jquery
-- lodash
 - stylus
 - bootstrap
 

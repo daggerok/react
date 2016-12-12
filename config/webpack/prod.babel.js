@@ -2,7 +2,6 @@ import webpack from 'webpack';
 import config from './common/config.babel';
 
 config.devtool = false;
-// config.devtool = 'source-map';
 
 config.plugins = [
   ...config.plugins,

@@ -12,4 +12,4 @@ git rm -r dist --cached
 sed -i -e 's/^#\/dist$/\/dist/g' .gitignore
 git add .
 git commit --amend --no-edit
-git push origin redux --force
+git push origin flux --force

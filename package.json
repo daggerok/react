@@ -1,5 +1,5 @@
 {
-  "name": "redux",
+  "name": "react-flux",
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
@@ -33,23 +33,13 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "flux": "^3.1.0",
     "jquery": "^3.1.1",
-
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-router": "^3.0.0",
-    "react-router-scroll": "^0.4.0",
-
-    "youtube-api-search": "^0.0.5",
-    "lodash": "^4.17.2",
-
-    "redux": "^3.6.0",
-    "react-redux": "^4.4.5",
-    "react-router-redux": "^4.0.7",
-
     "react-addons-transition-group": "^15.3.2",
-
-    "react-http-request": "^1.0.2"
+    "react-dom": "^15.3.2",
+    "react-http-request": "^1.0.2",
+    "react-router": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
@@ -114,7 +104,7 @@
       "transform-class-properties"
     ]
   },
-  "description": "small-valery",
+  "description": "react-flux",
   "main": "src/main.jsx",
   "repository": {
     "type": "git",

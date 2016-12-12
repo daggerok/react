@@ -1,9 +1,9 @@
-import React from 'react';
-import { render } from 'react-dom';
-import $ from 'jquery';
+const React       = require('react');
+const render      = require('react-dom').render;
+const $           = require('jquery');
 
-import Application from './app/routes';
-import settings from './app/settings.json';
+const Application = require('./app/Application');
+const settings    = require('./app/settings.json');
 
 $('head')
   .append($('base')
