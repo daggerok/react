@@ -1,9 +1,26 @@
-const React = require('react');
+const React                 = require('react');
+const ReactRouter           = require('react-router');
+const Router                = ReactRouter.Router;
+const Route                 = ReactRouter.Route;
+const IndexRoute            = ReactRouter.IndexRoute;
+const browserHistory        = ReactRouter.browserHistory;
+const applyRouterMiddleware = ReactRouter.applyRouterMiddleware;
+const useScroll             = require('react-router-scroll').useScroll;
+
+const base                  = require('./settings.json').base;
+const HomePage              = require('./components/HomePage/HomePage');
+const NotFoundPage          = require('./components/NotFoundPage/NotFoundPage');
 
 const Application = React.createClass({
   render: function render() {
     return (
-      <div>hi</div>
+      <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
+        <Route path={base.href} component={HomePage}>
+          <IndexRoute component={HomePage} />
+          <Route path='*' component={NotFoundPage} />
+        </Route>
+        <Route path='*' component={NotFoundPage} />
+      </Router>
     );
   }
 });

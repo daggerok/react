@@ -32,10 +32,10 @@ export default [
   }),
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'defer',
-  }),
-  // new CopyWebpackPlugin([
-  //   { from: './src/api', to: 'api' },
-  // ]),
+  }),/*
+  new CopyWebpackPlugin([
+    { from: './src/api', to: 'api' },
+  ]),*/
   new ProvidePlugin({
     jQuery: 'jquery',
     $: 'jquery',
