@@ -9,11 +9,11 @@ export default () => (
   <ul class='nav navbar-nav'>
     <li>
       <Link class='text-muted'
-            to={href}>Home</Link>
+            to={href}>Counter</Link>
     </li>
     <li>
       <Link class='text-muted'
-            to={href + 'some'}>try not-found</Link>
+            to={href + 'tube'}>Top 5 tube)</Link>
     </li>
   </ul>
 );

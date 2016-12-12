@@ -11,3 +11,6 @@ import 'react-router-scroll';
 import 'youtube-api-search';
 
 import 'lodash';
+
+import 'redux';
+import 'react-redux';
