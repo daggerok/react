@@ -1,5 +1,6 @@
 const React                 = require('react');
 const ReactRouter           = require('react-router');
+const Redirect              = ReactRouter.Redirect;
 const Router                = ReactRouter.Router;
 const Route                 = ReactRouter.Route;
 const IndexRoute            = ReactRouter.IndexRoute;
@@ -18,6 +19,7 @@ const Application = React.createClass({
       <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
         <Route path={base.href} component={App}>
           <IndexRoute component={HomePage} />
+          <Redirect from='info' to='about-us'/>
           <Route path='**' component={NotFoundPage} />
         </Route>
         <Route path='**' component={NotFoundPage} />
