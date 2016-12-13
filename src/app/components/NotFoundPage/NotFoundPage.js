@@ -5,6 +5,19 @@ require('./NotFoundPage.styl');
 const base = require('../../settings.json').base;
 
 const NotFoundPage = React.createClass({
+  /*
+  // not works
+  statics: {
+    willTransitionTo: function willTransitionTo(transition, params, query, cb) {
+      console.log('transition', transition, 'params', params, 'query', query, 'cb', cb);
+      cb();
+    },
+    willTransitionFrom: function willTransitionFrom(transition, component) {
+      console.log('transition', transition, 'component', component);
+      transition.abort();
+    },
+  },
+  */
   render: function render() {
     return (
       <div class='text-center'>
