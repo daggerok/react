@@ -7,6 +7,7 @@ const browserHistory        = ReactRouter.browserHistory;
 const applyRouterMiddleware = ReactRouter.applyRouterMiddleware;
 const useScroll             = require('react-router-scroll').useScroll;
 
+const App                   = require('./components');
 const base                  = require('./settings.json').base;
 const HomePage              = require('./components/HomePage/HomePage');
 const NotFoundPage          = require('./components/NotFoundPage/NotFoundPage');
@@ -15,14 +16,14 @@ const Application = React.createClass({
   render: function render() {
     return (
       <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
-        <Route path={base.href} component={HomePage}>
+        <Route path={base.href} component={App}>
           <IndexRoute component={HomePage} />
-          <Route path='*' component={NotFoundPage} />
+          <Route path='**' component={NotFoundPage} />
         </Route>
-        <Route path='*' component={NotFoundPage} />
+        <Route path='**' component={NotFoundPage} />
       </Router>
     );
-  }
+  },
 });
 
 module.exports = Application;
