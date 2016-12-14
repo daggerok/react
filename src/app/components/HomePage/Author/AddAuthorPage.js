@@ -1,5 +1,4 @@
 const React       = require('react');
-const ReactRouter = require('react-router');
 
 const AuthorForm  = require('./AuthorForm');
 const AuthorsApi  = require('../../../../api/authors');
@@ -52,4 +51,4 @@ const AddAuthorPage = React.createClass({
   },
 });
 
-module.exports = ReactRouter.withRouter(AddAuthorPage);
+module.exports = AddAuthorPage;

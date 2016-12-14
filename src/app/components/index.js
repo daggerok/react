@@ -1,5 +1,6 @@
-const React = require('react');
-const Link = require('react-router').Link;
+const React       = require('react');
+const ReactRouter = require('react-router');
+const Link        = ReactRouter.Link;
 
 const base = require('../settings.json').base;
 
@@ -16,4 +17,4 @@ const App = React.createClass({
   },
 });
 
-module.exports = App;
+module.exports = ReactRouter.withRouter(App);
