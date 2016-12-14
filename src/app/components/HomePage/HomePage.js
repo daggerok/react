@@ -4,6 +4,7 @@ const Link        = require('react-router').Link;
 const AuthorsApi  = require('../../../api/authors');
 const Jumbotron   = require('./Jumbotron/Jumbotron');
 const Author      = require('./Author/Author');
+const base        = require('../../settings.json').base;
 
 require('./HomePage.styl');
 

@@ -11,6 +11,7 @@ const useScroll             = require('react-router-scroll').useScroll;
 const App                   = require('./components');
 const base                  = require('./settings.json').base;
 const HomePage              = require('./components/HomePage/HomePage');
+const AddAuthorPage         = require('./components/HomePage/Author/AddAuthorPage');
 const NotFoundPage          = require('./components/NotFoundPage/NotFoundPage');
 
 const Application = React.createClass({
@@ -19,7 +20,8 @@ const Application = React.createClass({
       <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
         <Route path={base.href} component={App}>
           <IndexRoute component={HomePage} />
-          <Redirect from='info' to='about-us'/>
+          <Route path='add-author' component={AddAuthorPage} />
+          <Redirect from='info' to='about-us' />
           <Route path='**' component={NotFoundPage} />
         </Route>
         <Route path='**' component={NotFoundPage} />
