@@ -63,7 +63,7 @@ export default {
     },
     {
       include: [
-        resolvePath('./node_modules/angular'),
+        resolvePath('./node_modules/toastr'),
         resolvePath('./node_modules/bootstrap/dist'),
         include,
       ],

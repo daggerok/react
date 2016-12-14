@@ -1,8 +1,9 @@
-const React       = require('react');
+const React      = require('react');
+const Toastr     = require('toastr');
 
-const AuthorForm  = require('./AuthorForm');
-const AuthorsApi  = require('../../../../api/authors');
-const base        = require('../../../settings.json').base;
+const AuthorForm = require('./AuthorForm');
+const AuthorsApi = require('../../../../api/authors');
+const base       = require('../../../settings.json').base;
 
 const AddAuthorPage = React.createClass({
   getInitialState: function getInitialState() {
@@ -23,10 +24,10 @@ const AddAuthorPage = React.createClass({
     const author = this.state.author;
     if (author.email && author.name) {
       AuthorsApi.add(this.state.author);
+      Toastr.success('saved.');
       this.state.author.email = '';
       this.state.author.name = '';
       this.setState({ author: { email: '', name: '', }, });
-
       this.props.router.push(base.href);
     }
   },
