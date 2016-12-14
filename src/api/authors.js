@@ -24,6 +24,6 @@ module.exports = {
     return null;
   },
   add: function add(author) {
-    authors.push(author);
+    authors.push(JSON.parse(JSON.stringify(author)));
   },
 };

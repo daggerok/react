@@ -1,8 +1,9 @@
-const React = require('react');
-const Link  = require('react-router').Link;
+const React       = require('react');
+const ReactRouter = require('react-router');
 
-const AuthorForm = require('./AuthorForm');
+const AuthorForm  = require('./AuthorForm');
 const AuthorsApi  = require('../../../../api/authors');
+const base        = require('../../../settings.json').base;
 
 const AddAuthorPage = React.createClass({
   getInitialState: function getInitialState() {
@@ -20,8 +21,24 @@ const AddAuthorPage = React.createClass({
   },
   saveAuthor: function setAuthor(event) {
     event.preventDefault();
-    AuthorsApi.add(this.state.author);
-    this.setState({ author: { email: '', name: '', }, });
+    const author = this.state.author;
+    if (author.email && author.name) {
+      AuthorsApi.add(this.state.author);
+      this.state.author.email = '';
+      this.state.author.name = '';
+      this.setState({ author: { email: '', name: '', }, });
+
+      this.props.router.push(base.href);
+    }
+  },
+  componentDidMount: function componentWillUnmount() {
+    this.props.router.setRouteLeaveHook(this.props.route, () => {
+      const author = this.state.author;
+
+      if ('' != author.email && '' != author.name) {
+        return 'you have not saved info, are u sure?';
+      }
+    });
   },
   render: function render() {
     return (
@@ -35,4 +52,4 @@ const AddAuthorPage = React.createClass({
   },
 });
 
-module.exports = AddAuthorPage;
+module.exports = ReactRouter.withRouter(AddAuthorPage);

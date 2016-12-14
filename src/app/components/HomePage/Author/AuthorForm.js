@@ -1,5 +1,4 @@
-const React = require('react');
-const Link  = require('react-router').Link;
+const React         = require('react');
 
 const AddAuthorPage = React.createClass({
   render: function render() {
