@@ -1,7 +1,6 @@
-# flux [![build](https://travis-ci.org/daggerok/react.svg?branch=flux)](https://travis-ci.org/daggerok/react)
+# react-es5 [![build](https://travis-ci.org/daggerok/react.svg?branch=react-es5)](https://travis-ci.org/daggerok/react)
 
 stack:
-- flux
 - react
 - jquery
 - stylus
@@ -10,10 +9,9 @@ stack:
 ```bash
 npm i
 npm start
-npm run dev
-npm run webpack
+npm run lint
 npm run build
-npm run serve
+npm run webpack
 ```
 
 webpack-dev-server / browser-sync:

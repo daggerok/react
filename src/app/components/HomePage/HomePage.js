@@ -2,7 +2,6 @@ const React       = require('react');
 const Link        = require('react-router').Link;
 
 const AuthorsApi  = require('../../../api/authors');
-const Jumbotron   = require('./Jumbotron/Jumbotron');
 const Author      = require('./Author/Author');
 const base        = require('../../settings.json').base;
 
@@ -28,8 +27,8 @@ const HomePage = React.createClass({
   },
   render: function render() {
     return (
-      <div>
-        <Jumbotron />
+      <div class='container-fluid'>
+        <h3>authors</h3>
         <ul class='list-tyle-none'>
           {this.state.authors.map(this.createAuthor)}
         </ul>

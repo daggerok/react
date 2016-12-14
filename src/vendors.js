@@ -6,4 +6,3 @@ require('toastr/build/toastr.css');
 
 require('react');
 require('react-dom');
-require('flux');
