@@ -1,4 +1,4 @@
-const authors = [
+const authorsDb = [
   {
     email: 'daggerok@gmail.com',
     name: 'Max',
@@ -9,21 +9,13 @@ const authors = [
   },
 ];
 
-module.exports = {
-  get: function get() {
-    return JSON.parse(JSON.stringify(authors));
-  },
-  getById: function getById(email) {
-    const res = authors.filter(function(a, i) {
-      return email === a.email;
-    });
+export const get = () > JSON.parse(JSON.stringify(authorsDb));
 
-    if (res.length > 0) {
-      return res[0];
-    }
-    return null;
-  },
-  add: function add(author) {
-    authors.push(JSON.parse(JSON.stringify(author)));
-  },
+export const getById = (email) => {
+  const res = authorsDb.filter(function(a, i) {
+    return email === a.email;
+  });
+  return res.length && res.length > 0 ? res[0] : null;
 };
+
+export const add = (author) => authorsDb.push(JSON.parse(JSON.stringify(author)));

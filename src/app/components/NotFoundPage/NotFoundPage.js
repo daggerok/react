@@ -1,30 +1,14 @@
-const React = require('react');
-const Link  = require('react-router').Link;
+import React    from 'react';
+import { Link } from 'react-router';
 
-require('./NotFoundPage.styl');
-const base = require('../../settings.json').base;
+import { base } from '../../settings.json';
+import './NotFoundPage.styl';
 
-const NotFoundPage = React.createClass({
-  /*
-  // not works
-  statics: {
-    willTransitionTo: function willTransitionTo(transition, params, query, cb) {
-      console.log('transition', transition, 'params', params, 'query', query, 'cb', cb);
-      cb();
-    },
-    willTransitionFrom: function willTransitionFrom(transition, component) {
-      console.log('transition', transition, 'component', component);
-      transition.abort();
-    },
-  },
-  */
-  render: function render() {
-    return (
-      <div class='text-center'>
-        <h1> ¯\_(ツ)_/¯ </h1>
-
-        <pre class='error-container'>
-          {`
+export default (props) => (
+  <div class='text-center'>
+    <h1> ¯\_(ツ)_/¯ </h1>
+    <pre class='error-container'>
+      {`
                  _ _      __     _ _
    o O O         | | |    /  \\   | | |
   o         ___   |_  _|  | () |  |_  _|
@@ -32,26 +16,18 @@ const NotFoundPage = React.createClass({
  [======|_|"""""|_|"""""|_|"""""|_|"""""|
 ./o--000'"\`-0-0-'"\`-0-0-'"\`-0-0-'"\`-0-0-'
           `}
-        </pre>
-
-        <div class='panel panel-heading'>
-          <p>
-            Sorry, but page you are looking is not found
-            Please, contact support team.
-          </p>
-
-          <div class='small muted'>
-            using ancii text
-            &nbsp;<a target='_blank' href='http://patorjk.com/software/taag/#p=display&f=Train&t=%20_404'>
-              from here
-            </a>
-          </div>
-        </div>
-
-        <Link class='btn btn-block' to={base.href}>GO HOME</Link>
+    </pre>
+    <div class='panel panel-heading'>
+      <p>
+        Sorry, but page you are looking is not found
+        Please, contact support team.
+      </p>
+      <div class='small muted'>
+        using ancii text
+        &nbsp;<a target='_blank' href='http://patorjk.com/software/taag/#p=display&f=Train&t=%20_404'>
+        from here</a>
       </div>
-    );
-  }
-});
-
-module.exports = NotFoundPage;
+    </div>
+    <Link class='btn btn-block' to={base.href}>GO HOME</Link>
+  </div>
+);

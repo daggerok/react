@@ -1,33 +1,36 @@
-const React                 = require('react');
-const ReactRouter           = require('react-router');
-const Redirect              = ReactRouter.Redirect;
-const Router                = ReactRouter.Router;
-const Route                 = ReactRouter.Route;
-const IndexRoute            = ReactRouter.IndexRoute;
-const browserHistory        = ReactRouter.browserHistory;
-const applyRouterMiddleware = ReactRouter.applyRouterMiddleware;
-const useScroll             = require('react-router-scroll').useScroll;
+import React                from 'react';
+import {
+  Redirect,
+  Router,
+  Route,
+  IndexRoute,
+  browserHistory,
+  applyRouterMiddleware, }  from 'react-router';
 
-const App                   = require('./components');
-const base                  = require('./settings.json').base;
-const HomePage              = require('./components/HomePage/HomePage');
-const AddAuthorPage         = require('./components/HomePage/Author/AddAuthorPage');
-const NotFoundPage          = require('./components/NotFoundPage/NotFoundPage');
+import { useScroll }        from 'react-router-scroll';
 
-const Application = React.createClass({
-  render: function render() {
-    return (
-      <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
-        <Route path={base.href} component={App}>
-          <IndexRoute component={HomePage} />
-          <Route path='add-author' component={AddAuthorPage} />
-          <Redirect from='info' to='about-us' />
-          <Route path='**' component={NotFoundPage} />
-        </Route>
-        <Route path='**' component={NotFoundPage} />
-      </Router>
-    );
-  },
-});
+// import { MuiThemeProvider } from 'material-ui';
+import MuiThemeProvider     from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme          from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme        from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-module.exports = Application;
+import App                  from './components';
+import { base }             from './settings.json';
+import HomePage             from './components/HomePage/HomePage';
+import NotFoundPage         from './components/NotFoundPage/NotFoundPage';
+
+const Routes = () => (
+  <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
+    <Route path={base.href} component={App}>
+      <IndexRoute component={HomePage} />
+      <Route path='**' component={NotFoundPage} />
+    </Route>
+    <Route path='**' component={NotFoundPage} />
+  </Router>
+);
+
+export default () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Routes />
+  </MuiThemeProvider>
+);

@@ -1,11 +1,10 @@
-# flux [![build](https://travis-ci.org/daggerok/react.svg?branch=flux)](https://travis-ci.org/daggerok/react)
+# material [![build](https://travis-ci.org/daggerok/react.svg?branch=material)](https://travis-ci.org/daggerok/react)
 
 stack:
-- flux
 - react
 - jquery
 - stylus
-- bootstrap
+- material
 
 ```bash
 npm i
@@ -20,3 +19,6 @@ webpack-dev-server / browser-sync:
 
 - proxy /api/ -> http://localhost:8080/api/
 - any fallbacks -> /react/index.html
+
+links:
+- [Material UI](http://www.material-ui.com/)

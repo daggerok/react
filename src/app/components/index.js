@@ -1,20 +1,18 @@
-const React       = require('react');
-const ReactRouter = require('react-router');
-const Link        = ReactRouter.Link;
+import React    from 'react';
+import { Link } from 'react-router';
+import AppBar   from 'material-ui/AppBar';
 
-const base = require('../settings.json').base;
+import { base } from '../settings.json';
 
-const App = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <Link to={base.href}>App</Link>
-        {' '}
-        <Link to={`${base.href}add-author`}>Add Author</Link>
-        {this.props.children}
-      </div>
-    );
-  },
-});
+export default ({ children, router }) => (
+  <div>
+    <AppBar
+      title="React Material UI"
+      onTitleTouchTap={e => router.push(base.href)}
+      iconClassNameRight="muidocs-icon-navigation-expand-more" />
 
-module.exports = ReactRouter.withRouter(App);
+    <div class='container-fluid'>
+      {children && React.cloneElement(children)}
+    </div>
+  </div>
+);
