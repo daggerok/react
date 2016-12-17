@@ -9,7 +9,7 @@ const authorsDb = [
   },
 ];
 
-export const get = () > JSON.parse(JSON.stringify(authorsDb));
+export const get = () => JSON.parse(JSON.stringify(authorsDb));
 
 export const getById = (email) => {
   const res = authorsDb.filter(function(a, i) {
