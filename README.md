@@ -1,18 +1,14 @@
-# material [![build](https://travis-ci.org/daggerok/react.svg?branch=material)](https://travis-ci.org/daggerok/react)
+# react-purecss [![build](https://travis-ci.org/daggerok/react.svg?branch=master)](https://travis-ci.org/daggerok/react)
 
 stack:
 - react
-- jquery
-- stylus
-- material
+- purecss
 
 ```bash
 npm i
 npm start
-npm run dev
-npm run webpack
 npm run build
-npm run serve
+npm run webpack
 ```
 
 webpack-dev-server / browser-sync:
@@ -21,4 +17,4 @@ webpack-dev-server / browser-sync:
 - any fallbacks -> /react/index.html
 
 links:
-- [Material UI](http://www.material-ui.com/)
+- [purecss](http://purecss.io/)

@@ -1,12 +1,10 @@
-import React    from 'react';
-import { Link } from 'react-router';
-import AppBar   from 'material-ui/AppBar';
+import React from 'react';
 
 import { base } from '../settings.json';
 
 export default ({ children, router }) => (
   <div>
-    <AppBar
+    <div classs='navbar'
       title="React Material UI"
       onTitleTouchTap={e => router.push(base.href)}
       iconClassNameRight="muidocs-icon-navigation-expand-more" />

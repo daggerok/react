@@ -1,11 +1,11 @@
 import ExtractPlugin from 'extract-text-webpack-plugin';
 export const extractCSS = new ExtractPlugin('[name]-[hash].css', { allChunks: true });
 
-import path from 'path';
-const resolvePath = (rel) => path.resolve(process.cwd(), rel);
+import { resolve } from 'path';
+const pathTo = (rel) => resolve(process.cwd(), rel);
 
-const resources = resolvePath('./src/resources');
-const include = resolvePath('./src');
+const resources = pathTo('./src/resources');
+const include = pathTo('./src');
 
 const exclude = /\/node_modules\//;
 const assets = /\.(raw|gif|png|otf|eot|woff|woff2|ttf|svg|ico)$/i;
@@ -16,38 +16,41 @@ export default {
     {
       include,
       test: /\.js$/i,
-      loader: 'eslint',
+      loader: 'eslint-loader',
       exclude,
     },
     {
       include,
       exclude,
       test: /\.js$/i,
-      loader: 'source-map',
+      loader: 'source-map-loader',
     },
   ],
 
   loaders: [
     {
       test: images,
-      exclude: [exclude, resources],
-      include: [resolvePath('./src/api/v1/photos')],
+      exclude: [
+        exclude,
+        resources,
+      ],
+      include: pathTo('./src/api/v1/photos'),
       loaders: [
-        'file?name=[path]/[name].[ext]',
-        'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}',
+        'file-loader?name=[path]/[name].[ext]',
+        'image-webpack-loader?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}',
       ],
     },
     {
       include,
       exclude,
       test: /\.json$/i,
-      loader: 'json',
+      loader: 'json-loader',
     },
     {
       include,
       exclude,
       test: /\.js$/i,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         presets: [
           'stage-0',
@@ -63,33 +66,36 @@ export default {
     },
     {
       include: [
-        resolvePath('./node_modules/toastr'),
-        resolvePath('./node_modules/bootstrap/dist'),
+        pathTo('./node_modules/toastr'),
+        pathTo('./node_modules/purecss'),
         include,
       ],
       test: /\.css$/i,
-      loader: extractCSS.extract('style', 'css?importloader=1&sourceMap', 'postcss'),
+      loader: extractCSS.extract('style-loader', 'css-loader?importLoader=1&sourceMap', 'postcss-loader'),
     },
     {
       exclude,
       include,
       test: /\.styl$/i,
-      loader: extractCSS.extract('style', 'css!postcss!stylus?sourceMap'),
+      loader: extractCSS.extract('style-loader', 'css-loader!postcss-loader!stylus-loader?sourceMap'),
     },
     {
       include: exclude,
-      loader: 'file?name=vendors/[1]&regExp=node_modules/(.*)',
+      loader: 'file-loader?name=vendors/[1]&regExp=node_modules/(.*)',
       test: assets,
     },
     {
       exclude,
       include: resources,
-      loader: 'file?name=resources/[1]&regExp=src/resources/(.*)',
+      loader: 'file-loader?name=resources/[1]&regExp=src/resources/(.*)',
       test: assets,
     },
     {
-      exclude: [exclude, resources],
-      loader: 'file?name=[path]/[name].[ext]',
+      exclude: [
+        exclude,
+        resources,
+      ],
+      loader: 'file-loader?name=[path]/[name].[ext]',
       test: assets,
     },
   ],

@@ -7,7 +7,7 @@ import postcss from './postcss.babel';
 import eslint  from './eslint.babel';
 import node    from './node.babel';
 
-const devtool = 'source-map';
+const devtool = '#source-map';
 
 export default {
   entry,

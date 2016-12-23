@@ -1,7 +1,9 @@
 sudo: required
 dist: trusty
 language: node_js
-node_js: 7
+node_js:
+  - 6
+  - 7
 install: true
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome

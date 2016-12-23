@@ -2,6 +2,7 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
 const AUTOPREFIXER_BROWSERS = [
+  'last 4 versions',
   'Android 2.3',
   'Android >= 4',
   'Chrome >= 35',
