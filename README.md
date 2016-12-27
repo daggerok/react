@@ -1,21 +1,18 @@
-# material [![build](https://travis-ci.org/daggerok/react.svg?branch=material)](https://travis-ci.org/daggerok/react)
+# typescript [![build](https://travis-ci.org/daggerok/react.svg?branch=typescript)](https://travis-ci.org/daggerok/react)
 
 stack:
 - react
 - jquery
-- stylus
-- material
+- typescript
 
 ```bash
 npm i
 npm start
-npm run dev
-npm run webpack
+npm run compile
 npm run build
-npm run serve
 ```
 
-webpack-dev-server / browser-sync:
+webpack-dev-server:
 
 - proxy /api/ -> http://localhost:8080/api/
 - any fallbacks -> /react/index.html
