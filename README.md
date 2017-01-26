@@ -1,4 +1,4 @@
-# react-purecss [![build](https://travis-ci.org/daggerok/react.svg?branch=master)](https://travis-ci.org/daggerok/react)
+# react-purecss [![build](https://travis-ci.org/daggerok/react.svg?branch=purecss)](https://travis-ci.org/daggerok/react)
 
 stack:
 - react
