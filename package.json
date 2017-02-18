@@ -1,0 +1,45 @@
+{
+  "name": "react-tsx",
+  "version": "0.0.1",
+  "description": "react typescript and webpack 2",
+  "scripts": {
+    "serve": "npm-run-all build lite-server",
+    "build": "npm run webpack -- --env production -p",
+    "start": "concurrently 'npm run dev' --kill-others",
+    "dev": "npm-run-all -p webpack-watch lite-server",
+    "webpack-watch": "npm run webpack -- -w --env development",
+    "lite-server": "lite-server",
+    "clean": "rimraf -rf ./dist",
+    "prewebpack": "npm run clean",
+    "webpack": "webpack"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.7.3",
+    "concurrently": "3.3.0",
+    "css-loader": "0.26.1",
+    "file-loader": "0.10.0",
+    "lite-server": "2.2.2",
+    "npm-run-all": "4.0.1",
+    "postcss": "^5.2.14",
+    "postcss-loader": "^1.3.1",
+    "precss": "^1.4.0",
+    "style-loader": "0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.5.0",
+    "ts-loader": "2.0.0",
+    "typescript": "2.1.6",
+    "webpack": "2.2.1"
+  },
+  "dependencies": {
+    "@types/react": "15.0.11",
+    "@types/react-dom": "0.14.23",
+    "bootswatch": "3.3.7",
+    "normalize.css": "5.0.0",
+    "react": "15.4.2",
+    "react-dom": "15.4.2"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": ""
+}
