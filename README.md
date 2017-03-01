@@ -18,7 +18,12 @@ npm run gh-pages # or:
 fish bin/gh-pages.fish
 ```
 
-webpack-dev-server / browser-sync:
+npm update versions
+
+```bash
+npm i -g npm-check-updates
+ncu -u
+```
 
 - proxy /api/ -> http://localhost:8080/api/
 - any fallbacks -> /react/index.html
