@@ -1,5 +1,10 @@
 import ExtractPlugin from 'extract-text-webpack-plugin';
-export const extractCSS = new ExtractPlugin('[name]-[hash].css', { allChunks: true });
+import { version } from '../../../package.json';
+
+export const extractCSS = new ExtractPlugin(
+  `[name]-[hash].css?v=${version}`,
+  { allChunks: true, }
+);
 
 import path from 'path';
 const resolvePath = (rel) => path.resolve(process.cwd(), rel);
@@ -16,14 +21,14 @@ export default {
     {
       include,
       test: /\.js$/i,
-      loader: 'eslint',
+      loader: 'eslint-loader',
       exclude,
     },
     {
       include,
       exclude,
       test: /\.js$/i,
-      loader: 'source-map',
+      loader: 'source-map-loader',
     },
   ],
 
@@ -34,20 +39,20 @@ export default {
       include: [resolvePath('./src/api/v1/photos')],
       loaders: [
         'file?name=[path]/[name].[ext]',
-        'image-webpack?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}',
+        'image-webpack-loader?{optimizationLevel:7,interlaced:false,mozjpeg:{quality:0,progressive:true}}',
       ],
     },
     {
       include,
       exclude,
       test: /\.json$/i,
-      loader: 'json',
+      loader: 'json-loader',
     },
     {
       include,
       exclude,
       test: /\.js$/i,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         presets: [
           'stage-0',
@@ -68,13 +73,13 @@ export default {
         include,
       ],
       test: /\.css$/i,
-      loader: extractCSS.extract('style', 'css?importloader=1&sourceMap', 'postcss'),
+      loader: extractCSS.extract('style-loader', 'css-loader?importloader=1&sourceMap', 'postcss-loader'),
     },
     {
       exclude,
       include,
       test: /\.styl$/i,
-      loader: extractCSS.extract('style', 'css!postcss!stylus?sourceMap'),
+      loader: extractCSS.extract('style-loader', 'css-loader!postcss-loader!stylus-loader?sourceMap'),
     },
     {
       include: exclude,

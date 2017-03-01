@@ -8,15 +8,23 @@ config.plugins = [
   ...config.plugins,
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
+    beautify: false,
     mangle: {
-      keep_fnames: true,
+      screw_ie8: true,
+      keep_fnames: true
     },
+    compress: {
+      warnings: false,
+      screw_ie8: true
+    },
+    comments: false
   }),
   new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production'),
     },
   }),
+  new webpack.optimize.AggressiveMergingPlugin(),
 ];
 
 export default config;

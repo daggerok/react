@@ -1,5 +1,8 @@
 #!/usr/bin/fish
 
+git add .
+git commit --amend --no-edit
+npm version patch
 npm i; npm run build
 sed -i -e 's/^\/dist$/#\/dist/g' .gitignore
 echo "script: echo test" > dist/.travis.yml
