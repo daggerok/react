@@ -4,11 +4,16 @@ import {
   optimize, }                     from 'webpack';
 import HtmlWebpackPlugin          from 'html-webpack-plugin';
 import CopyWebpackPlugin          from 'copy-webpack-plugin';
+import { BaseHrefWebpackPlugin }  from 'base-href-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 
 import { extractCSS } from './module.babel';
+import { isGhPages } from './env.babel';
 
-const { OccurenceOrderPlugin, CommonsChunkPlugin, } = optimize;
+const {
+  OccurenceOrderPlugin,
+  CommonsChunkPlugin,
+} = optimize;
 
 export default [
   extractCSS,
@@ -30,12 +35,17 @@ export default [
       minifyJS: true,
     },
   }),
+  new BaseHrefWebpackPlugin({
+    baseHref: isGhPages ? '/react/' : '/',
+  }),
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'defer',
-  }),/*
+  }),
+  /*
   new CopyWebpackPlugin([
     { from: './src/api', to: 'api' },
-  ]),*/
+  ]),
+  */
   new ProvidePlugin({
     jQuery: 'jquery',
     $: 'jquery',
