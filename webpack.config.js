@@ -1,3 +1,5 @@
+const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
+
 const { version } = require('./package.json');
 const { resolve } = require('path');
 
@@ -79,6 +81,9 @@ module.exports = env => ({
       },
     ].filter(r => !!r),
   },
+  plugins: [
+    new ProgressBarWebpackPlugin(),
+  ],
   resolve: {
     extensions: [
       '.ts',
