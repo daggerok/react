@@ -8,7 +8,7 @@
     "prebuild": "npm run prewebpack && npm run clean",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.production.babel.js -c --process -p",
     "dev": "npm run webpack -- -w",
-    "start": "webpack-dev-server -d --config ./config/webpack.config.babel.js --content-base=./src",
+    "start": "webpack-dev-server -d --config ./config/webpack.config.babel.js --content-base=./",
     "webpack": "webpack --config ./config/webpack.config.babel.js -c --process",
     "prewebpack": "npm i --no-optional",
     "predev": "npm run prewebpack",
