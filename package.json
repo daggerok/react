@@ -1,42 +1,33 @@
 {
   "name": "small-valery",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "ISC",
   "scripts": {
     "gh-pages-deploy": "fish bin/gh-pages.fish",
     "postgh-pages-deploy": "open-url daggerok.github.io/react/",
-
     "sleep": "sleep 3",
-
     "clean": "rimraf -rf ./dist",
     "predev": "npm run clean",
     "prebuild": "npm run clean",
-
     "prestart-server": "mv -f ./dist ./react; mkdir -p dist; mv -f react dist/",
     "start-server": "browser-sync start -c ./config/bs-config.js",
-
     "watch": "npm run webpack -- -w",
     "webpack": "cross-env NODE_ENV=development webpack --config=./config/webpack/dev.babel.js -c --process",
     "dev": "npm-run-all -p watch json-server",
-
     "open-dev": "open-url localhost:8000/react/",
     "open-dev-url": "npm-run-all sleep open-dev",
     "webpack-dev-server": "cross-env NODE_ENV=development webpack-dev-server -w -d --config=./config/webpack/dev.babel.js --content-base=./src",
     "server.start": "npm-run-all -p webpack-dev-server server open-dev-url",
     "start": "npm-run-all -p webpack-dev-server open-dev-url",
-
     "open-prod": "open-url localhost:8000/react/",
     "open-prod-url": "npm-run-all sleep open-prod",
     "start-server-and-open-prod-url": "npm-run-all -p open-prod-url server",
     "build": "cross-env NODE_ENV=production webpack --config=./config/webpack/prod.babel.js -c --progress --profile --bail -p",
     "serve": "npm-run-all build start-server",
-
     "test": "npm run lint",
     "lint": "eslint ./src ./config -c ./config/.eslintrc.js --ext js 'src/**/*.js'",
-
     "disabled.test": "karma start ./config/karma.config.js --single-run",
     "disabled.tdd": "karma start ./config/karma.config.js",
-
     "disabled.e2e": "npm-run-all -p prepare-e2e wait-20s-and-run-protractor",
     "pree2e": "webdriver-manager update",
     "prepare-e2e": "concurrently -p '[{name}]' -n 'HTTP' -c 'bgYellow.bold' 'npm run webpack-dev-server' --kill-others --success first",
