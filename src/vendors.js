@@ -7,6 +7,6 @@ import 'react-dom';
 import 'react-router';
 import 'react-router-scroll';
 
-import 'rxjs';
+import 'rx';
 import 'rx-connect';
 import 'react-http-request';

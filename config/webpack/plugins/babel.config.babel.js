@@ -8,6 +8,7 @@ export default {
     'react-html-attrs',
     'add-module-exports',
     'syntax-dynamic-import',
-    'transform-class-properties'
+    'transform-class-properties',
+    'transform-decorators-legacy'
   ],
 };

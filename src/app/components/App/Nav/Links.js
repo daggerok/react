@@ -10,6 +10,10 @@ export default () => (
     </li>
     <li>
       <Link class='text-muted'
+            to='/rx'>Rx</Link>
+    </li>
+    <li>
+      <Link class='text-muted'
             to='/some'>Not found</Link>
     </li>
   </ul>

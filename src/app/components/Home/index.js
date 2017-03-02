@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import                           './Home.styl';
+import React, { PureComponent } from 'react';
+import Rx from 'rx';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      test: 'test',
-    };
-  }
+import './Home.styl';
+import { rxConnect } from 'rx-connect';
+
+@rxConnect(
+  Rx.Observable.timer(0, 1000).timestamp()
+)
+export default class RxComponent extends React.PureComponent {
 
   render() {
     return (
       <div>
-        Home page
+        Home page {this.props.value}
       </div>
     );
   }
