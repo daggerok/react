@@ -5,17 +5,20 @@ import {
 import HtmlWebpackPlugin          from 'html-webpack-plugin';
 import CopyWebpackPlugin          from 'copy-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
-
+import { version } from '../../../package.json';
 import { extractCSS } from './module.babel';
 
-const { OccurenceOrderPlugin, CommonsChunkPlugin, } = optimize;
+const {
+  OccurenceOrderPlugin,
+  CommonsChunkPlugin,
+} = optimize;
 
 export default [
   extractCSS,
   new OccurenceOrderPlugin(true),
   new CommonsChunkPlugin({
     name: 'vendors',
-    filename: 'vendors-[hash].js',
+    filename: `vendors-[hash].js?v=${version}`,
     minChunks: Infinity,
   }),
   new NoErrorsPlugin(),
@@ -33,9 +36,11 @@ export default [
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'defer',
   }),
+  /*
   new CopyWebpackPlugin([
     { from: './src/api', to: 'api' },
   ]),
+  */
   new ProvidePlugin({
     jQuery: 'jquery',
     $: 'jquery',

@@ -1,22 +1,29 @@
-import webpack from 'webpack';
+import { DefinePlugin, optimize } from 'webpack';
 import config from './common/config.babel';
 
 config.devtool = false;
-// config.devtool = 'source-map';
 
 config.plugins = [
   ...config.plugins,
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
+  new optimize.DedupePlugin(),
+  new optimize.UglifyJsPlugin({
+    beautify: false,
     mangle: {
-      keep_fnames: true,
+      screw_ie8: true,
+      keep_fnames: true
     },
+    compress: {
+      warnings: false,
+      screw_ie8: true
+    },
+    comments: false
   }),
-  new webpack.DefinePlugin({
+  new DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production'),
     },
   }),
+  new optimize.AggressiveMergingPlugin(),
 ];
 
 export default config;

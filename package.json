@@ -4,16 +4,15 @@
   "license": "ISC",
   "scripts": {
     "sleep": "sleep 3",
-
     "clean": "rimraf -rf ./dist",
-    "predev": "npm run clean",
-    "prebuild": "npm run clean",
+    "precompile": "npm run clean",
+    "compile": "webpack --config=./config/webpack/prod.babel.js -c --progress --profile=web --bail",
 
     "prestart-server": "mv -f ./dist ./react; mkdir -p dist; mv -f react dist/",
     "start-server": "browser-sync start -c ./config/bs-config.js",
 
     "watch": "npm run webpack -- -w",
-    "webpack": "cross-env NODE_ENV=development webpack --config=./config/webpack/dev.babel.js -c --process --profile --display-modules #--display-reasons",
+    "webpack": "cross-env NODE_ENV=development npm run compile -- --display-modules #--display-reasons",
     "dev": "npm-run-all -p watch json-server",
 
     "open-dev": "open-url localhost:8000/react/",
@@ -25,7 +24,7 @@
     "open-prod": "open-url localhost:8000/react/",
     "open-prod-url": "npm-run-all sleep open-prod",
     "start-server-and-open-prod-url": "npm-run-all -p open-prod-url server",
-    "build": "cross-env NODE_ENV=production webpack --config=./config/webpack/prod.babel.js -c --progress --profile --bail -p",
+    "build": "cross-env NODE_ENV=production npm run compile -- -p",
     "serve": "npm-run-all build start-server",
 
     "test": "npm run lint",
