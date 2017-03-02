@@ -1,12 +1,9 @@
 import React    from 'react';
 import { Link } from 'react-router';
 import               './NotFound.styl';
-import Nav      from './Nav';
-import { base } from '../../../settings.json';
 
 export default () => (
   <div class='text-center'>
-    <Nav />
 
     <h1> ¯\_(ツ)_/¯ </h1>
 
@@ -35,6 +32,6 @@ export default () => (
       </div>
     </div>
 
-    <Link class='btn btn-block' to={base.href}>GO HOME</Link>
+    <Link class='btn btn-block' to='/'>GO HOME</Link>
   </div>
 );

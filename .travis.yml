@@ -15,8 +15,8 @@ before_install:
   - sudo dpkg -i google-chrome*.deb
 script:
   - npm i
-  - npm run lint
+  - npm t
   - npm run build
-  - npm run webpack
+  - npm run compile
   - if [ -f npm-debug.log ]; then cat npm-debug.log; fi
 cache.directories: node_modules/

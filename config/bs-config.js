@@ -15,13 +15,12 @@ module.exports = {
 
     baseDir: './dist',
 
-    // see ./webpack/webpack-dev-server.babel.js
     middleware: [
       // proxy
       localhost8080proxyApi,
       // historyApiFallback
       historyApiFallback({
-        index: '/react/'
+        index: '/index.html'
       })
     ],
   },
@@ -31,7 +30,7 @@ module.exports = {
     './dist/**/*.*'
   ],
 
-  startPath: '/react/',
+  startPath: '/',
 
   serveStatic: [
     './dist'

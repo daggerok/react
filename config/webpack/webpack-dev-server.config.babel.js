@@ -1,4 +1,7 @@
-import { publicPath } from './output.babel';
+import {
+  pathTo,
+  publicPath,
+} from './utils.babel';
 
 const proxy = () => ({
   target: 'http://localhost:8080',
@@ -6,15 +9,15 @@ const proxy = () => ({
   secure: false,
 });
 
-export default {
+export default env => env === 'development' ? {
   port: 8000,
   inline: true,
-  progress: true,
   stats: 'minimal',
+  contentBase: pathTo('./src'),
   historyApiFallback: {
-    index: publicPath,
+    index: publicPath(env),
   },
   proxy: {
     '/api': proxy(),
-  },
-};
+  }
+} : {};
