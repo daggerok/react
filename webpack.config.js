@@ -60,6 +60,7 @@ const { version } = require('./package.json');
 const filename = ext => `[name].${ext}?v=${version}`;
 
 module.exports = env => ({
+
   entry: {
     vendors: './src/vendors.js',
     app: './src/main.js',
@@ -82,13 +83,6 @@ module.exports = env => ({
       },
       {
         test: /\.css$/i,
-        /*
-        loaders: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-        ],
-        */
         include: styleIncludes,
         use: styleLoader('css'),
       },
@@ -110,12 +104,12 @@ module.exports = env => ({
       {
         test: assets,
         include: exclude,
-        use: 'file-loader?name=vendors/[1]&regExp=node_modules/(.*)',
+        use: `file-loader?name=vendors/[1]?v=${version}&regExp=node_modules/(.*)`,
       },
       {
         test: assets,
         exclude,
-        use: 'file-loader?name=[path]/[name].[ext]',
+        use: `file-loader?name=[path]/[name].[ext]?v=${version}`,
       },
     ].filter(r => !!r),
   },
@@ -136,9 +130,11 @@ module.exports = env => ({
   },
 
   plugins: [
+
     new ProvidePlugin({
       'jQuery': 'jquery' // bootstrap/dist/js/bootstrap.js required jQuery from jquery
     }),
+
     new LoaderOptionsPlugin({
       options: {
         content: pathTo('.'),
@@ -156,7 +152,9 @@ module.exports = env => ({
         debug: env !== 'production',
       },
     }),
+
     env !== 'production' ? new HotModuleReplacementPlugin(): undefined,
+
     env === 'production' ? new UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -175,23 +173,30 @@ module.exports = env => ({
       },
       sourceMap: true,
     }) : undefined,
+
     env === 'production' ? new NoEmitOnErrorsPlugin() : undefined,
+
     new ExtractTextWebpackPlugin({
       disable: false,
       allChunks: true,
       publicPath: '/',
       filename: filename('css'),
     }),
+
     new EnvironmentPlugin({ // use DefinePlugin instead
       'NODE_ENV': env === 'production' ? env : 'development',
     }),
+
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(env === 'production' ? env : 'development'),
       },
     }),
+
     new CommonsChunkPlugin('vendors'),
+
     env === 'production' ? new AggressiveMergingPlugin() : undefined,
+
     new HtmlWebpackPlugin({
       chunks: [
         'vendors',
@@ -205,6 +210,7 @@ module.exports = env => ({
         minifyJS: true,
       } : false,
     }),
+
   ].filter(p => !!p),
 
   devtool: 'source-map',
