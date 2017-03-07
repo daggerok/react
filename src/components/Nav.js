@@ -3,11 +3,12 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
+import { href } from '../services/BaseHref';
 
 export default () => (
   <ul>
-    <li><Link to="/">root</Link></li>
-    <li><Link to="/home">home</Link></li>
-    <li><Link to="/not-found">not-found</Link></li>
+    <li><Link to={href}>root</Link></li>
+    <li><Link to={href + "home"}>home</Link></li>
+    <li><Link to={href + "not-found"}>not-found</Link></li>
   </ul>
 );

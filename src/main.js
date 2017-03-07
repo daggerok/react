@@ -3,24 +3,30 @@
  */
 import './assets';
 
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   Router,
   Route,
-  IndexRoute
+  IndexRoute,
+  browserHistory,
 } from 'react-router';
-import { useBasename, createHistory } from 'history';
 
-import NotFound from "./components/NotFound";
-import Main from "./components/Main";
+import { href } from './services/BaseHref';
+import NotFound from './components/NotFound';
+import Main from './components/Main';
+
+const appStyles = {
+  padding: '2%',
+};
 
 class App extends React.Component {
   constructor() {
     super();
     this.ONE_SECOND = 1000;
     this.state = {seconds: 0};
-    this.incrementTimerAndUpdateState = this.incrementTimerAndUpdateState.bind(this);
+    this.incrementTimerAndUpdateState =
+      this.incrementTimerAndUpdateState.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +34,9 @@ class App extends React.Component {
   }
 
   incrementTimerAndUpdateState() {
-    this.setState({ seconds: 1 + this.state.seconds });
+    this.setState({
+      seconds: 1 + this.state.seconds,
+    });
   }
 
   componentWillUnmount() {
@@ -37,7 +45,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={appStyles}>
         <div>I am living {this.state.seconds} seconds!</div>
         {this.props.children}
       </div>
@@ -45,18 +53,14 @@ class App extends React.Component {
   }
 }
 
-const browserHistory = useBasename(createHistory)({
-  basename: document.getElementsByTagName('base')[0].getAttribute('href')
-});
-
-
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
+    <Route path={href} component={App}>
       <IndexRoute component={Main}/>
-      <Route path="home" component={Main}/>
-      <Route path="*" component={NotFound}/>
+      <Route path='home' component={Main}/>
+      <Route path='*' component={NotFound}/>
     </Route>
+    <Route path='*' component={NotFound}/>
   </Router>,
   document.getElementById('daggerok.github.io.react')
 );
