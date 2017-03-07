@@ -1,5 +1,4 @@
-daggerok.github.io.react
-========================
+# react [![build](https://travis-ci.org/daggerok/react.svg?branch=react)](https://travis-ci.org/daggerok/react)
 
 ```fish
 npm start

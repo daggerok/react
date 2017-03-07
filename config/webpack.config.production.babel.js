@@ -10,7 +10,7 @@ config.plugins = [
   new DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
-    }
+    },
   }),
   new optimize.OccurenceOrderPlugin(true),
   new optimize.DedupePlugin(),
