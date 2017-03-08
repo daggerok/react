@@ -1,15 +1,12 @@
 {
-  "name": "react-tsx",
+  "name": "typescript-webpack2",
   "version": "0.0.1",
   "description": "react typescript and webpack 2",
   "scripts": {
     "precompile": "rimraf -rf ./dist ./react",
     "compile": "webpack --progress --display-error-details",
-
     "start": "webpack-dev-server --env development",
-
     "build": "npm run compile -- --env production -p",
-
     "serve": "npm-run-all build lite-server",
     "lite-server": "lite-server"
   },
@@ -48,6 +45,7 @@
     "ts-loader": "2.0.1",
     "typescript": "2.2.1",
     "webpack": "2.2.1",
+    "webpack-bundle-analyzer": "2.3.0",
     "webpack-dev-server": "2.4.1"
   },
   "main": "index.js",
@@ -58,5 +56,13 @@
     "typescript",
     "webpack 2"
   ],
-  "author": "Maksim Kostromin <daggerok@gmail.com>"
+  "author": "Maksim Kostromin <daggerok@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daggerok/react/issues"
+  },
+  "homepage": "https://github.com/daggerok/react#readme"
 }

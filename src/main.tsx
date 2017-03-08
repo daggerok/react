@@ -5,8 +5,10 @@ import './main.styl';
 
 ReactDOM.render(
   <div>
-    hi!
-    <span className="glyphicon glyphicon-asterisk"></span>
+    <div className="padding-1-percent">
+      hi!
+      <span className="glyphicon glyphicon-asterisk"></span>
+    </div>
   </div>,
   document.querySelector('#app')
 );

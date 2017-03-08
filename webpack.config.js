@@ -50,6 +50,7 @@ const {
 } = require('webpack');
 
 const {
+  AggressiveSplittingPlugin,
   AggressiveMergingPlugin,
   CommonsChunkPlugin,
   UglifyJsPlugin,
@@ -58,6 +59,8 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = env => ({
 
@@ -70,8 +73,9 @@ module.exports = env => ({
   output: {
     jsonpFunction: 'w',
     path: pathTo('./dist'),
-    filename: `[name].js?v=${version}`,
+    filename: `[name].[id].bundle.js?v=${version}`,
     publicPath: env === 'ghpages' ? '/react/' : '/',
+    chunkFilename: `'[name].[id].chunk.js?v=${version}`,
   },
   module: {
     rules: [
@@ -188,13 +192,17 @@ module.exports = env => ({
       },
     }),
 
-    new CommonsChunkPlugin({ name: 'init', chunks: ['app', 'polyfills', 'vendors'], }),
+    new CommonsChunkPlugin({ name: 'manifest' }),
     new CommonsChunkPlugin({ name: 'vendors', chunks: ['app', 'vendors'], }),
-
-    env !== 'development' ? new AggressiveMergingPlugin() : undefined,
-
+/*
+    env === 'development' ? undefined : new AggressiveMergingPlugin(),
+    new AggressiveSplittingPlugin({
+      minSize: 30000,
+      maxSize: 50000,
+    }),
+*/
     new HtmlWebpackPlugin({
-      inject: 'body',
+      inject: true,
       cache: true,
       showErrors: true,
       excludeChunks: [],
@@ -203,7 +211,8 @@ module.exports = env => ({
       //   'vendors',
       //   'app',
       // ],
-      template: './index.html',
+      // // chunksSortMode: 'dependency',
+      template: './src/index.html',
       minify: env !== 'development' ? {
         collapseWhitespace: true,
         removeComments: true,
@@ -220,7 +229,11 @@ module.exports = env => ({
       defaultAttribute: 'defer',
     }),
 
-  ].filter(p => !!p),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // }),
+
+  ].filter(plugin => !!plugin),
 
   devtool: 'source-map',
 
