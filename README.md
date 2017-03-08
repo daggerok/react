@@ -1,8 +1,9 @@
-# purecss [![build](https://travis-ci.org/daggerok/react.svg?branch=master)](https://travis-ci.org/daggerok/react)
+# purecss-webpack1 [![build](https://travis-ci.org/daggerok/react.svg?branch=purecss-webpack1)](https://travis-ci.org/daggerok/react)
 
 stack:
 - react
 - purecss
+- webpack1
 
 ```bash
 npm i
