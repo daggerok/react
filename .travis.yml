@@ -13,10 +13,13 @@ before_install:
   - sudo apt-get install -y libappindicator1 fonts-liberation
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
-script:
   - npm i
+  - npm update
+script:
   - npm t
   - npm run build
   - npm run compile
   - if [ -f npm-debug.log ]; then cat npm-debug.log; fi
-cache.directories: node_modules/
+cache:
+  directories:
+    - node_modules/
