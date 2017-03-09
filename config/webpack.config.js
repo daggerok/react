@@ -23,16 +23,13 @@ module.exports = {
 
   output: {
     jsonpFunction: 'w',
-    publicPath: '/react/',
     path: pathTo('./dist'),
     filename: '[name].[id].js?v=' + version,
   },
 
-  // Enable sourcemaps for debugging webpack's output.
   devtool: '#source-map',
 
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['', '.ts', '.tsx', '.js'],
   },
 
@@ -42,7 +39,6 @@ module.exports = {
       { test: /\.js$/i, loader: 'source-map-loader' },
     ],
     loaders: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
       { test: /\.tsx?$/i, loader: 'ts-loader' },
       // { test: /\.css$/i, loader: 'style-loader!css-loader?importLoaders=1!postcss-loader' },
       {
@@ -64,11 +60,11 @@ module.exports = {
   ],
 
   plugins: [
-    isProduction ? undefined : new HotModuleReplacementPlugin(),
 
+    new NoErrorsPlugin(),
+
+    isProduction ? undefined : new HotModuleReplacementPlugin(),
     !isProduction ? undefined : new optimize.AggressiveMergingPlugin(),
-    !isProduction ? undefined : new optimize.OccurrenceOrderPlugin(),
-    !isProduction ? undefined : new optimize.OccurenceOrderPlugin(),
     !isProduction ? undefined : new optimize.DedupePlugin(),
 
     !isProduction ? undefined : new optimize.UglifyJsPlugin({
@@ -80,21 +76,15 @@ module.exports = {
       },
     }),
 
-    new optimize.CommonsChunkPlugin({
-      name: 'manifest',
-    }),
-    new optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      chunks: [
-        'app',
-        'vendors',
-      ],
-    }),
+    /* ordered chunks start */
+    new optimize.OccurenceOrderPlugin(true),
 
-    new NoErrorsPlugin(),
+    new optimize.CommonsChunkPlugin({
+      names: ['vendors', 'manifest'],
+    }),
 
     new HtmlWebpackPlugin({
-      chunks: 'all',
+      chunksSortMode: 'none',
       template: './src/index.html',
       minify: isProduction ? {
         minifyJS: true,
@@ -106,6 +96,7 @@ module.exports = {
         collapseWhitespace: true,
       } : false,
     }),
+    /* ordered chunks end */
 
     new DefinePlugin({
       'process.env': {
@@ -118,9 +109,8 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:8080',
     },
-    historyApiFallback: {
-      index: '/react/',
-    },
+    // historyApiFallback: { index: '/react/', },
+    historyApiFallback: true,
     contentBase: pathTo('./src'),
     watchDelay: 100,
     progress: true,

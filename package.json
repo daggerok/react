@@ -7,9 +7,11 @@
     "watch": "cross-env NODE_ENV=development npm run compile -- -w",
     "webpack-dev-server": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.config.js -w",
     "preopen-url": "sleep 3",
-    "open-url": "open-url http://localhost:8000/react/",
+    "open-url": "open-url http://localhost:8000",
     "start": "npm-run-all -p webpack-dev-server open-url",
-    "build": "cross-env NODE_ENV=production npm run compile"
+    "build": "cross-env NODE_ENV=production npm run compile",
+    "preserve": "npm run build",
+    "serve": "lite-server -c ./config/bs-config.js"
   },
   "pre-push": [
     "compile",
