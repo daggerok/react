@@ -18,6 +18,7 @@ export class Hi extends React.Component<HiProps, {}> {
           <li>{this.props.compiler}</li>
           <li>{this.props.framework}</li>
         </ul>
+        <pre>{JSON.stringify(this.props)}</pre>
       </div>
     );
   }
