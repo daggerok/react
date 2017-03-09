@@ -17,7 +17,7 @@ const pathTo = rel => resolve(process.cwd(), rel);
 module.exports = {
 
   entry: {
-    vendors: './src/main.tsx',
+    vendors: './src/vendors.ts',
     app: './src/main.tsx',
   },
 
@@ -44,8 +44,24 @@ module.exports = {
     loaders: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
       { test: /\.tsx?$/i, loader: 'ts-loader' },
+      // { test: /\.css$/i, loader: 'style-loader!css-loader?importLoaders=1!postcss-loader' },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+        ],
+      },
     ],
   },
+
+  postcss: () => [
+    require('precss'),
+    require('autoprefixer')([
+      'last 4 versions',
+    ]),
+  ],
 
   plugins: [
     isProduction ? undefined : new HotModuleReplacementPlugin(),
@@ -64,7 +80,9 @@ module.exports = {
       },
     }),
 
-    new optimize.CommonsChunkPlugin({ name: 'manifest', }),
+    new optimize.CommonsChunkPlugin({
+      name: 'manifest',
+    }),
     new optimize.CommonsChunkPlugin({
       name: 'vendors',
       chunks: [
@@ -76,6 +94,7 @@ module.exports = {
     new NoErrorsPlugin(),
 
     new HtmlWebpackPlugin({
+      chunks: 'all',
       template: './src/index.html',
       minify: isProduction ? {
         minifyJS: true,
