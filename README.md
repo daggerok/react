@@ -2,12 +2,12 @@
 
 stack:
 - react
-- jquery
 - typescript
 
 ```bash
 npm i
 npm start
+npm run watch
 npm run compile
 npm run build
 ```
