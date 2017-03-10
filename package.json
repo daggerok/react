@@ -130,9 +130,9 @@
   },
   "keywords": [
     "react",
-    "github pages"
+    "webpack"
   ],
-  "description": "react webpack2",
+  "description": "react with webpack 2",
   "author": "Maksim Kostromin",
   "license": "ISC",
   "private": true
