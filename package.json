@@ -4,7 +4,7 @@
   "main": "./config/webpack.config.js",
   "scripts": {
     "precompile": "rimraf -rf ./dist ./react",
-    "compile": "webpack --config ./config/webpack.config.js --progress --profile --colors --display-error-details",
+    "compile": "webpack --config ./config/webpack.config.js --progress --colors --display-error-details",
 
     "build": "npm run compile -- --env production",
 
@@ -19,8 +19,8 @@
     "ghserve": "npm run gh-server",
     "gh-server": "browser-sync start -c ./config/bs/bs-config.ghpages.js",
 
-    "watch": "npm run compile -- --env development -w",
-    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug",
+    "watch": "npm run compile -- --env development -w  --debug --progress --profile --colors",
+    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug --progress --profile --colors",
 
     "compose": "docker-compose --project-name=react -f ./config/docker-compose.yml",
     "precompose-up": "npm run build",
