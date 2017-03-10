@@ -3,7 +3,7 @@ const { assign } = Object;
 const httpProxyMiddleware = require('http-proxy-middleware');
 const historyApiFallback = require('connect-history-api-fallback');
 
-const config = require('./bs-config.default');
+const config = require('./bs-config.default.js');
 
 const proxy = httpProxyMiddleware('/api', {
   target: 'http://localhost:8080',

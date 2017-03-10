@@ -1,8 +1,7 @@
 {
-  "name": "daggerok.github.io.react",
+  "name": "react-master",
   "version": "0.0.1",
-  "description": "daggerok.github.io.react",
-  "main": "./src/main.js",
+  "main": "./config/webpack.config.js",
   "scripts": {
     "precompile": "rimraf -rf ./dist ./react",
     "compile": "webpack --config ./config/webpack.config.js --progress --display-error-details",
@@ -11,35 +10,32 @@
 
     "preserve": "npm run build",
     "serve": "npm run server",
-    "server": "browser-sync start -c ./config/bs-config.js",
+    "server": "browser-sync start -c ./config/bs/bs-config.js",
 
     "ghpages": "npm run compile -- --env ghpages",
     "postghpages": "mv -f ./dist ./react; mkdir -p ./dist/react; mv -f ./react ./dist/",
 
     "preghserve": "npm run ghpages",
     "ghserve": "npm run gh-server",
-    "gh-server": "browser-sync start -c ./config/bs-config.ghpages.js",
+    "gh-server": "browser-sync start -c ./config/bs/bs-config.ghpages.js",
 
     "watch": "npm run compile -- --env development -w",
-    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug"
+    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug",
+
+    "compose": "docker-compose --project-name=react -f ./config/docker-compose.yml",
+    "precompose-up": "npm run build",
+    "compose-up": "npm run compose -- up -d --remove-orphans",
+    "compose-down": "npm run compose -- down --remove-orphans --rmi local -v"
   },
   "pre-push": [
     "compile",
+    "ghpages",
     "build"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://githuib.com/daggerok/daggerok.github.io.react"
-  },
-  "keywords": [
-    "react",
-    "github pages"
-  ],
-  "author": "Maksim Kostromin",
-  "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "6.23.0",
     "bootswatch": "3.3.7",
+    "core-js": "2.4.1",
+    "es6-shim": "0.35.3",
     "jquery": "3.1.1",
     "react": "15.4.2",
     "react-dom": "15.4.2",
@@ -70,7 +66,7 @@
     "compression-webpack-plugin": "0.3.2",
     "connect-history-api-fallback": "1.3.0",
     "copy-webpack-plugin": "4.0.1",
-    "css-loader": "0.26.2",
+    "css-loader": "0.26.4",
     "cssnano": "3.10.0",
     "editorconfig": "0.13.2",
     "eslint": "3.17.1",
@@ -127,5 +123,17 @@
       "transform-class-properties",
       "transform-decorators-legacy"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://githuib.com/daggerok/daggerok.github.io.react"
+  },
+  "keywords": [
+    "react",
+    "github pages"
+  ],
+  "description": "react webpack2",
+  "author": "Maksim Kostromin",
+  "license": "ISC",
+  "private": true
 }

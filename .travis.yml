@@ -4,7 +4,7 @@ language: node_js
 node_js:
   - 6
   - 7
-install:  true
+install: true
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0

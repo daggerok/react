@@ -7,5 +7,5 @@
   "trailing": true,
   "eqeqeq": true,
   "camelcase": true,
-  "maxlen": 80
+  "maxlen": 120
 }

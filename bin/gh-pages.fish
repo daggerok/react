@@ -15,4 +15,4 @@ git rm -r dist --cached
 sed -i -e 's/^#\/dist$/\/dist/g' .gitignore
 git add .
 git commit --amend --no-edit
-git push origin react --force
+git push origin master --force

@@ -62,5 +62,5 @@ ReactDOM.render(
     </Route>
     <Route path='*' component={NotFound}/>
   </Router>,
-  document.getElementById('daggerok.github.io.react')
+  document.getElementById('app')
 );
