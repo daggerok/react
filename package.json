@@ -4,7 +4,7 @@
   "main": "./config/webpack.config.js",
   "scripts": {
     "precompile": "rimraf -rf ./dist ./react",
-    "compile": "webpack --config ./config/webpack.config.js --progress --display-error-details",
+    "compile": "webpack --config ./config/webpack.config.js --progress --profile --colors --display-error-details",
 
     "build": "npm run compile -- --env production",
 
