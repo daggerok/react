@@ -19,6 +19,8 @@ const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
 const babel = {
   presets: [
     [ 'es2015', { modules: false } ],
@@ -360,9 +362,19 @@ module.exports = env => ({
       defaultAttribute: 'defer',
     }),
 
+    // gzip
+
+    new CompressionWebpackPlugin({
+      asset: '[path].gz?[query]', // default: [path].gz[query]
+      algorithm: 'gzip', // zlib, zopfli, function(buf, callback)
+      // test: /\.(js|css|html)$/i, // default: every assets
+      // threshold: 10240, // default: 0
+      // minRatio: 0.8 // default: Only assets that compress better that ratio: 0.8
+    }),
+
   ].filter(plugin => !!plugin),
 
-  devtool: 'source-map',
+  devtool: isProd(env) ? 'cheap-module-source-map' : 'inline',
 
   devServer: {
     port: 8000,
