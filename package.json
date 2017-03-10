@@ -20,7 +20,7 @@
     "gh-server": "browser-sync start -c ./config/bs/bs-config.ghpages.js",
 
     "watch": "npm run compile -- --env development -w  --debug --progress --profile --colors",
-    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug --progress --profile --colors",
+    "start": "webpack-dev-server -d --env development --config ./config/webpack.config.js --debug --progress --colors",
 
     "compose": "docker-compose --project-name=react -f ./config/docker-compose.yml",
     "precompose-up": "npm run build",
@@ -37,11 +37,12 @@
     "es6-shim": "0.35.3",
     "jquery": "3.1.1",
     "react": "15.4.2",
-    "react-dom": "15.4.2",
     "react-addons-pure-render-mixin": "15.4.2",
+    "react-dom": "15.4.2",
+    "react-http-request": "1.0.3",
     "react-router": "3.0.2",
     "react-router-scroll": "0.4.1",
-    "react-http-request": "1.0.3",
+    "react-styl": "0.0.3",
     "rx-connect": "0.6.1",
     "rx": "4.1.0"
   },

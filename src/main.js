@@ -1,20 +1,16 @@
-/**
- * Created by mak on 9/6/16.
- */
 import './assets';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {
   Router,
   Route,
   IndexRoute,
-  browserHistory,
+  browserHistory
 } from 'react-router';
-
-import { href } from './services/BaseHref';
-import NotFound from './components/NotFound';
-import Main from './components/Main';
+import { href } from './services/base-href.service';
+import NotFound from './components/not-found.component';
+import Main from './components/main.component';
+import Nav from './components/nav.component';
 
 const appStyles = {
   padding: '2%',
@@ -24,7 +20,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.ONE_SECOND = 1000;
-    this.state = {seconds: 0};
+    this.state = { seconds: 0 };
     this.incrementTimerAndUpdateState =
       this.incrementTimerAndUpdateState.bind(this);
   }
@@ -45,15 +41,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={appStyles}>
-        <div>I am living {this.state.seconds} seconds!</div>
-        {this.props.children}
+      <div>
+        <Nav/>
+        <div style={appStyles}>
+          <div>I am living {this.state.seconds} seconds!</div>
+          {this.props.children}
+        </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(
+// bootstrap
+render(
   <Router history={browserHistory}>
     <Route path={href} component={App}>
       <IndexRoute component={Main}/>
