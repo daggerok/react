@@ -29,7 +29,6 @@
   },
   "pre-push": [
     "compile",
-    "ghpages",
     "build"
   ],
   "dependencies": {
