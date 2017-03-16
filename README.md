@@ -1,4 +1,4 @@
-# quickstart [![build](https://travis-ci.org/daggerok/react.svg?branch=quickstart)](https://travis-ci.org/daggerok/react)
+# redux-webpack2 [![build](https://travis-ci.org/daggerok/react.svg?branch=redux-webpack2)](https://travis-ci.org/daggerok/react)
 
 ```bash
 npm i -g yarn
@@ -7,9 +7,6 @@ yarn compile
 yarn build
 yarn serve
 yarn ghpages
-yarn ghserve
-yarn compose-up
-yarn compose-down
 ```
 
 npm update versions
@@ -18,4 +15,3 @@ npm update versions
 npm i -g npm-check-updates
 ncu -u
 ```
-
