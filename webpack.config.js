@@ -166,7 +166,6 @@ module.exports = env => ({
 
   devtool: devtool(env),
 
-
   devServer: {
     port: 8000,
     noInfo: false,
