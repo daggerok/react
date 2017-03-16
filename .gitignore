@@ -1,0 +1,9 @@
+.idea/*
+!.idea/jsLibraryMappings.xml
+.vscode/*
+!.vscode/launch.json
+node_modules
+typings
+*.js
+*.js.map
+*.log

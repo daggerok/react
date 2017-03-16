@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Typescript Redux</title>
+  <link href="styles.css" rel="stylesheet">
+  <style>
+    body {
+      padding: 2%;
+    }
+  </style>
+</head>
+<body>
+<main></main>
+<script src="node_modules/systemjs/dist/system.src.js"></script>
+<script>
+  System
+    .config({
+      paths: { 'npm': 'node_modules/' },
+      map: {
+        'react': 'npm/react/dist/react.min.js',
+        'react-dom': 'npm/react-dom/dist/react-dom.min.js',
+        'redux': 'npm/redux/dist/redux.min.js',
+        'app': 'js',
+      },
+      packages: {
+        app: {
+          main: './app.js',
+          defaultExtension: 'js',
+        },
+      },
+    });
+  System
+    .import('app')
+    .catch(console.error);
+</script>
+</body>
+</html>

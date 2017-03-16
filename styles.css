@@ -1,0 +1,29 @@
+/* normalize styles... */
+@import url('./node_modules/normalize.css/normalize.css');
+/* outer border */
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+/* show rows separators */
+td {
+  border-top: 1px solid black;
+}
+/* config width */
+th {
+  font-weight: bold;
+  min-width: 100px;
+}
+/* center text align */
+th, td {
+  text-align: center;
+  padding: 4px;
+}
+/* left text align for first column */
+td:first-child {
+  text-align: left;
+}
+/* white, lightgray, white... */
+tbody > tr:nth-child(2n) > td {
+  background-color: lightgray;
+}
