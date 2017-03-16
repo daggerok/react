@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const { join } = require('path');
@@ -96,6 +97,12 @@ module.exports = env => ({
       names: ['app', 'vendors', 'polyfills', 'manifest'],
     }),
 
+    new CopyWebpackPlugin([
+      {
+        from: './src/api', to: './api',
+      }
+    ]),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
       chunksSortMode: 'dependency',
@@ -172,7 +179,8 @@ module.exports = env => ({
     stats: 'minimal',
     host: 'localhost',
     historyApiFallback: true,
-    contentBase: pathTo('./dist'),
+    contentBase: pathTo('./src'),
+    // contentBase: pathTo('./dist'),
     publicPath: publicPath(env),
   },
 
