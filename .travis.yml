@@ -17,11 +17,15 @@ before_install:
 script:
   - yarn install
   - yarn webpack
+  - yarn webpack -- --env development
   - yarn build
   - yarn ghpages
+
   - yarn upgrade
+
   - yarn install
   - yarn webpack
+  - yarn webpack -- --env development
   - yarn build
   - yarn ghpages
 after_script:
