@@ -9,6 +9,6 @@ const Padding = props => (
   />
 );
 
-export default (props) => (
+export default props => (
   <Padding {...props} />
 );

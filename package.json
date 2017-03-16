@@ -1,7 +1,7 @@
 {
-  "name": "react-router-4",
+  "name": "react-quickstart",
   "version": "0.0.1",
-  "description": "react router 4",
+  "description": "react quickstart",
   "main": "webpack.config.js",
   "author": "daggerok",
   "license": "MIT",
@@ -49,5 +49,14 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/react.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/daggerok/react/issues"
+  },
+  "homepage": "https://github.com/daggerok/react#readme"
 }

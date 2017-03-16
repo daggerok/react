@@ -1,5 +1,3 @@
-// https://webpack.js.org/guides/production-build/
-
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
@@ -34,7 +32,6 @@ module.exports = env => ({
         use: [
           'babel-loader',
         ],
-        // exclude: /node_modules/,
         include: pathTo('./src'),
       },
 
@@ -53,9 +50,6 @@ module.exports = env => ({
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                // !isProd(env) ? require('postcss-cssstats')(stats => console.log(stats)) : undefined,
-                // require("stylelint")({ /* your options */ }),
-                // isProd(env) ? require('cssnano')() : undefined,
                 require('postcss-svgo')(),
                 require('autoprefixer')([
                   'last 4 versions',
@@ -125,8 +119,6 @@ module.exports = env => ({
 
     !isProd(env) ? new webpack.NamedModulesPlugin() : undefined,
 
-    // gzip
-
     isProd(env) ? new CompressionWebpackPlugin({
       asset: '[path].gz?[query]',
     }) : undefined,
@@ -165,7 +157,6 @@ module.exports = env => ({
   },
 
   devtool: devtool(env),
-
 
   devServer: {
     port: 8000,
