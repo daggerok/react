@@ -28,7 +28,7 @@ module.exports = env => ({
   module: {
     rules: [
       {
-        test: /\.js?x$/i,
+        test: /\.jsx?$/i,
         use: [
           'babel-loader',
         ],
@@ -62,16 +62,11 @@ module.exports = env => ({
       },
 
       {
-        test: /\.(ico|jp?eg|png|gif|raw)$/i,
-        use: 'file-loader',
-      },
-
-      {
-        test: /\.(woff?2|eot|ttf|svg)$/i,
+        test: /\.(woff2?|eot|ttf|svg|ico|jpe?g|png|gif|raw)$/i,
         use: {
           loader: 'url-loader',
           options: {
-            limit: 100000,
+            limit: 1000,
           },
         },
       },
