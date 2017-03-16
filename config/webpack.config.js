@@ -78,6 +78,7 @@ module.exports = {
 
     /* ordered chunks start */
     new optimize.OccurenceOrderPlugin(true),
+    new optimize.OccurrenceOrderPlugin(true),
 
     new optimize.CommonsChunkPlugin({
       names: ['vendors', 'manifest'],

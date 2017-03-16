@@ -1,21 +1,25 @@
 # typescript [![build](https://travis-ci.org/daggerok/react.svg?branch=typescript)](https://travis-ci.org/daggerok/react)
 
+mew
+
 stack:
 - react
 - typescript
 
 ```bash
-npm i
-npm start
-npm run watch
-npm run compile
-npm run build
+yarn i
+yarn start
+yarn watch
+yarn compile
+yarn build
 ```
 
-webpack-dev-server:
+npm update versions
 
-- proxy /api/ -> http://localhost:8080/api/
-- any fallbacks -> /react/index.html
+```bash
+npm i -g npm-check-updates
+ncu -u -x @types/core-js,webpack,webpack-dev-server
+```
 
 links:
 - [Material UI](http://www.material-ui.com/)
