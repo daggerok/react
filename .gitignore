@@ -1,4 +1,5 @@
 .idea/
+!.idea/jsLibraryMappings.xml
 dist/
 node_modules/
 *-e
