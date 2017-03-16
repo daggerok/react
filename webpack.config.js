@@ -20,12 +20,6 @@ module.exports = env => ({
 
   context: pathTo('.'),
 
-  entry: {
-    polyfills: './src/polyfills.js',
-    vendors: './src/vendors.js',
-    app: './src/main.jsx',
-  },
-
   output: {
     jsonpFunction: 'w',
     path: pathTo('./dist'),
@@ -90,9 +84,13 @@ module.exports = env => ({
     ],
   },
 
-  plugins: [
+  entry: {
+    polyfills: './src/polyfills.js',
+    vendors: './src/vendors.js',
+    app: './src/main.jsx',
+  },
 
-    !isProd(env) ? new webpack.NamedModulesPlugin() : undefined,
+  plugins: [
 
     new webpack.optimize.CommonsChunkPlugin({
       names: ['app', 'vendors', 'polyfills', 'manifest'],
@@ -120,6 +118,12 @@ module.exports = env => ({
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer',
     }),
+
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    isProd(env) ? new webpack.optimize.AggressiveMergingPlugin() : undefined,
+
+    !isProd(env) ? new webpack.NamedModulesPlugin() : undefined,
 
     // gzip
 
