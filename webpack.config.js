@@ -1,6 +1,8 @@
-const { resolve } = require('path');
-const pathTo = rel => resolve(process.cwd(), rel);
-const minimize = env => env !== 'development' ? '&minimize' : '';
+const { join } = require('path');
+const pathTo = rel => join(process.cwd(), rel);
+const isProd = env => env !== 'development';
+const minimize = env => isProd(env) ? '&minimize' : '';
+const publicPath = env => env === 'ghpages' ? '/react/' : '/';
 
 const include = pathTo('./src');
 const exclude = /\/(node_modules|bower_components)\//;
@@ -11,15 +13,15 @@ const cssLoader = env => ({
   options: {
     camelCase: true,
     importLoaders: 1,
-    sourceMap: env === 'development',
-    minimize: env !== 'development',
+    sourceMap: !isProd(env),
+    minimize: isProd(env),
   },
 });
 
 const postcssLoader = env => ({
   loader: 'postcss-loader',
   options: {
-    sourceMap: env === 'development',
+    sourceMap: !isProd(env),
     plugins: function () {
       return [
         require('precss'),
@@ -60,9 +62,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = env => ({
+
+  context: pathTo('.'),
 
   entry: {
     polyfills: './src/polyfills.ts',
@@ -74,7 +78,7 @@ module.exports = env => ({
     jsonpFunction: 'w',
     path: pathTo('./dist'),
     filename: `[name].[id].bundle.js?v=${version}`,
-    publicPath: env === 'ghpages' ? '/react/' : '/',
+    publicPath: publicPath(env),
     chunkFilename: `'[name].[id].chunk.js?v=${version}`,
   },
   module: {
@@ -152,16 +156,15 @@ module.exports = env => ({
 
     new LoaderOptionsPlugin({
       options: {
-        content: pathTo('.'),
         postcss: postcssLoader(env),
-        minimize: env !== 'development',
-        debug: env === 'development',
+        minimize: isProd(env),
+        debug: !isProd(env),
       },
     }),
 
-    env === 'development' ? new HotModuleReplacementPlugin(): undefined,
+    !isProd(env) ? new HotModuleReplacementPlugin(): undefined,
 
-    env !== 'development' ? new UglifyJsPlugin({
+    isProd(env) ? new UglifyJsPlugin({
       compress: {
         warnings: false,
         screw_ie8: true,
@@ -195,7 +198,7 @@ module.exports = env => ({
     new CommonsChunkPlugin({ name: 'manifest' }),
     new CommonsChunkPlugin({ name: 'vendors', chunks: ['app', 'vendors'], }),
 /*
-    env === 'development' ? undefined : new AggressiveMergingPlugin(),
+    !isProd(env) ? undefined : new AggressiveMergingPlugin(),
     new AggressiveSplittingPlugin({
       minSize: 30000,
       maxSize: 50000,
@@ -222,7 +225,7 @@ module.exports = env => ({
     }),
 
     new BaseHrefWebpackPlugin({
-      baseHref: env === 'ghpages' ? '/react/' : '/',
+      baseHref: publicPath(env),
     }),
 
     new ScriptExtHtmlWebpackPlugin({
@@ -239,9 +242,9 @@ module.exports = env => ({
 
   devServer: {
     port: 8000,
-    hot: env === 'development',
+    hot: !isProd(env),
     stats: 'minimal',
-    contentBase: pathTo('./src'),
+    contentBase: './src',
     historyApiFallback: true,
   },
 
