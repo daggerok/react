@@ -1,98 +1,103 @@
-const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
-
-const { version } = require('./package.json');
-const { resolve } = require('path');
-
-const pathTo = rel => resolve(process.cwd(), rel);
-const minimize = env => env !== 'development' ? '&minimize' : '';
+const { join } = require('path');
+const pathTo = rel => join(process.cwd(), rel);
+const isProd = env => env !== 'development';
 
 const include = pathTo('./src');
+const { version } = require('./package.json');
 const exclude = /\/(node_modules|bower_components)\//;
-const assets = /\.(raw|gif|png|jpg|jpeg|otf|eot|woff|woff2|ttf|svg|ico)$/i;
+const assets = /\.(raw|gif|png|jpg|jpeg|ico|png|woff2?|eot|ttf|otf|svg)$/i;
 
-const postcss = {
-  loader: 'postcss-loader',
-  options: {
-    plugins: function () {
-      return [
-        require('precss'),
-        require('autoprefixer')([
-          'last 4 versions',
-        ]),
-      ];
+const use = env => [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1,
+      minimize: isProd(env),
+      sourceMap: !isProd(env),
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: function () {
+        return [
+          require('precss'),
+          require('autoprefixer')([
+            'last 4 versions',
+          ]),
+        ];
+      }
     }
-  }
-};
+  },
+];
 
 module.exports = env => ({
+
+  context: pathTo('.'),
+
   entry: {
     app: './src/main.tsx',
   },
+
   output: {
-    path: './dist',
+    path: pathTo('./dist'),
     publicPath: '/dist/',
-    filename: `[name].js?${version}`,
+    filename: '[name].js?v=' + version,
   },
+
   module: {
     rules: [
       {
-        test: /\.tsx?$/i,
+        test: /\.ts?x$/i,
         loader: 'ts-loader',
         include,
       },
+
       {
         test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader?importLoaders=1',
-          postcss,
-        ],
-        /*
-        include: [
-          pathTo('./node_modules/semantic-ui-css'),
-          pathTo('./node_modules/normalize.css'),
-          pathTo('./node_modules/bootswatch'),
-          pathTo('./node_modules/bootstrap'),
-          include,
-        ],
-        */
+        use: use(env),
       },
       {
         test: /\.styl$/i,
         use: [
-          'style-loader',
-          'css-loader?importLoaders=2',
-          postcss,
+          ...use(env),
           'stylus-loader',
         ],
         include,
       },
+
       {
         test: assets,
-        loader: 'file-loader?name=[path]/[name].[ext]&regExp=src/(.*)',
+        loader: 'url-loader',
+        options: {
+          limit: 100,
+          name: '[path]/[name].[ext]?v=' + version,
+          regExp: /src\/(.*)/,
+        },
         include,
-        exclude,
       },
+
       {
         test: assets,
-        loader: 'file-loader?name=vendors/[1]&regExp=node_modules/(.*)',
+        loader: 'url-loader',
+        options: {
+          limit: 100,
+          name: 'vendors/[1]?v=' + version,
+          regExp: /node_modules\/(.*)/,
+        },
         include: exclude,
-        exclude: include,
       },
+
     ].filter(r => !!r),
   },
-  plugins: [
-    new ProgressBarWebpackPlugin(),
-  ],
+
   resolve: {
     extensions: [
       '.ts',
       '.tsx',
       '.js',
     ],
-    modules: [
-      include,
-      'node_modules',
-    ],
   },
+
 });

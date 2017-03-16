@@ -1,14 +1,18 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
-// import 'normalize.css/normalize.css'
 import 'bootswatch/paper/bootstrap.css';
 import './main.styl';
 
-ReactDOM.render(
-  <div>
-    hi!
-    <span className="glyphicon glyphicon-asterisk"></span>
-  </div>,
+const Padding = props => (
+  <div style={{
+    padding: '1%',
+  }} {...props}/>
+);
+
+render(
+  <Padding>
+    hi! <span className="glyphicon glyphicon-asterisk"></span>
+  </Padding>,
   document.getElementById('app')
 );
