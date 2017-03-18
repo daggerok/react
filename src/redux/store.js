@@ -1,51 +1,39 @@
-/* combine reducers */
+/**
+ * public API
+ */
+
+/* application store */
 import { createStore } from 'redux';
 import { reducer } from './reducer';
 
 export const store = createStore(reducer);
 
-/** sum dispatcher helpers */
-import { actionTypes as sumActionTypes } from './reducers/sum/actionTypes';
-import { optional } from './reducers/common/util';
+/** sum dispatchers */
+import * as sumActions from './sum/actions';
 
-export const dispatchPlus = value => store.dispatch({
-  type: sumActionTypes.PLUS,
-  value: optional(value),
-});
+export const dispatchPlus = value =>
+  store.dispatch(sumActions.plus(value));
 
-export const dispatchMinus = value => store.dispatch({
-  type: sumActionTypes.MINUS,
-  value: optional(value),
-});
+export const dispatchMinus = value =>
+  store.dispatch(sumActions.minus(value));
 
-export const dispatchDiv = value => store.dispatch({
-  type: sumActionTypes.DIV,
-  value: optional(value),
-});
+export const dispatchDiv = value =>
+  store.dispatch(sumActions.div(value));
 
-export const dispatchMult = value => store.dispatch({
-  type: sumActionTypes.MULT,
-  value: optional(value),
-});
+export const dispatchMult = value =>
+  store.dispatch(sumActions.mult(value));
 
-/** numbers dispatcher helpers */
-import { actionTypes as numbersActionTypes } from './reducers/numbers/actionTypes';
+/** numbers dispatchers */
+import * as numbersActions from './numbers/actions';
 
-export const dispatchAdd = value => store.dispatch({
-  type: numbersActionTypes.ADD,
-  value,
-});
+export const dispatchAdd = value =>
+  store.dispatch(numbersActions.add(value));
 
-export const dispatchUpdate = (id, value) => store.dispatch({
-  type: numbersActionTypes.UPDATE,
-  id,
-  value,
-});
+export const dispatchUpdate = (id, value) =>
+  store.dispatch(numbersActions.update(id, value));
 
-export const dispatchDelete = id => store.dispatch({
-  type: numbersActionTypes.DELETE,
-  id,
-});
+export const dispatchRemove = id =>
+  store.dispatch(numbersActions.remove(id));
 
 /*
 // test:
@@ -74,5 +62,5 @@ console.log('add: 0,1,2,1,0');
 console.log('update: (1: 4), (3: 3)');
 [{k:1,v:4},{k:3,v:3}].forEach(({k,v}) => dispatchUpdate(k, v));
 console.log('delete: 2')
-dispatchDelete(2);
+dispatchRemove(2);
 */

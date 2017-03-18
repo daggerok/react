@@ -1,10 +1,8 @@
-import { isNotValid } from '../common/util';
 import { actionTypes } from './actionTypes';
 
-/** numbers reducer */
 export const reducer = (state = [], action) => {
 
-  if (isNotValid(action)) {
+  if (!action) {
     return state;
   }
 
@@ -24,22 +22,24 @@ export const reducer = (state = [], action) => {
 };
 
 /** reducer helpers */
-const reduceAdd = (state, action) => [
+const reduceAdd = (state, { value }) => [
   ...state,
-  action.value,
+  value,
 ];
-const reduceUpdate = (state, action) => {
-  const before = state.slice(0, action.id);
-  const after = state.slice(action.id + 1, state.length);
+
+const reduceUpdate = (state, { id, value }) => {
+  const before = state.slice(0, id);
+  const after = state.slice(id + 1, state.length);
   return [
     ...before,
-    +action.value,
+    +value,
     ...after,
   ];
 };
-const reduceDelete = (state, action) => [
-  ...state.slice(0, action.id),
-  ...state.slice(action.id + 1, state.length),
+
+const reduceDelete = (state, { id }) => [
+  ...state.slice(0, id),
+  ...state.slice(id + 1, state.length),
 ];
 
 // // use combine sore instead:

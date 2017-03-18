@@ -1,8 +1,18 @@
 # react-redux-vscode-jsx [![build](https://travis-ci.org/daggerok/react.svg?branch=react-redux-vscode-jsx)](https://travis-ci.org/daggerok/react)
 
+stack:
+- react
+- redux
+  - store
+  - reducer
+  - actions
+  - types
+
+use yarn
+
 ```bash
 npm i -g yarn
-yarnstart
+yarn start
 yarn compile
 yarn build
 yarn serve

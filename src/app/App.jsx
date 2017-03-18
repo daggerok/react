@@ -1,4 +1,7 @@
 import React from 'react';
+import SumView from './components/SumView';
+import NumbersView from './components/NumbersView';
+import StateView from './components/StateView';
 
 export default class ReduceRedux extends React.Component {
 
@@ -16,8 +19,7 @@ export default class ReduceRedux extends React.Component {
     this.unsubscribe();
   }
 
-  get(id) {
-    const input = this.refs[id];
+  get(input) {
     const result = input.value;
     input.value = '';
     input.focus();
@@ -25,32 +27,19 @@ export default class ReduceRedux extends React.Component {
   }
 
   render() {
-
-    const {
-      dispatchPlus,
-      dispatchMinus,
-      dispatchDiv,
-      dispatchMult,
-    } = this.props;
-
     return (
-      <div>
-        <h4>sum store</h4>
-
-        <input ref='inputPlus' type='number' placeholder='plus action'/>
-        <button onClick={() => dispatchPlus(this.get('inputPlus'))}>plus</button>
-
-        <input ref='inputMinus' type='number' placeholder='minus action'/>
-        <button onClick={() => dispatchMinus(this.get('inputMinus'))}>minus</button>
-
-        <input ref='inputDiv' type='number' placeholder='div action'/>
-        <button onClick={() => dispatchDiv(this.get('inputDiv'))}>div</button>
-
-        <input ref='inputMult' type='number' placeholder='mult action'/>
-        <button onClick={() => dispatchMult(this.get('inputMult'))}>mult</button>
-
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
-      </div>
+      <Content>
+        <h2>react redux app</h2>
+        <SumView {...merge(this.props, this.get)}/>
+        <NumbersView {...merge(this.props, this.get)}/>
+        <StateView {...this.state}/>
+      </Content>
     );
   }
 }
+
+const Content = props => <div style={{
+  padding:'2%',
+}} {...props}/>;
+
+const merge = (props, get) => Object.assign({}, props, { get });
