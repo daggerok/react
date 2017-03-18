@@ -1,14 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import './main.styl';
+import './styles.styl';
 
 ReactDOM.render(
-  <div>
-    <div className="padding-1-percent">
-      hi!
-      <span className="glyphicon glyphicon-asterisk"></span>
-    </div>
-  </div>,
+  <div/>,
   document.querySelector('#app')
 );

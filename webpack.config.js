@@ -1,8 +1,8 @@
 const { join } = require('path');
 const pathTo = rel => join(process.cwd(), rel);
 const isProd = env => env !== 'development';
-const minimize = env => isProd(env) ? '&minimize' : '';
 const publicPath = env => env === 'ghpages' ? '/react/' : '/';
+const devtool = env => isProd(env) ? 'cheap-module-source-map' : 'inline-source-map';
 
 const include = pathTo('./src');
 const exclude = /\/(node_modules|bower_components)\//;
@@ -11,9 +11,8 @@ const assets = /\.(raw|gif|png|jpg|jpeg|otf|eot|woff|woff2|ttf|svg|ico)$/i;
 const cssLoader = env => ({
   loader: 'css-loader',
   options: {
-    camelCase: true,
+    modules: true,
     importLoaders: 1,
-    sourceMap: !isProd(env),
     minimize: isProd(env),
   },
 });
@@ -62,8 +61,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
 module.exports = env => ({
 
   context: pathTo('.'),
@@ -77,10 +74,11 @@ module.exports = env => ({
   output: {
     jsonpFunction: 'w',
     path: pathTo('./dist'),
-    filename: `[name].[id].bundle.js?v=${version}`,
     publicPath: publicPath(env),
-    chunkFilename: `'[name].[id].chunk.js?v=${version}`,
+    filename: '[name].[id].bundle.js?v=' + version,
+    chunkFilename: '[name].[id].chunk.js?v=' + version,
   },
+
   module: {
     rules: [
       {
@@ -88,18 +86,10 @@ module.exports = env => ({
         loader: 'ts-loader',
         include,
       },
+
       {
         test: /\.css$/i,
         use: use(env),
-        /*
-        include: [
-          pathTo('./node_modules/semantic-ui-css'),
-          pathTo('./node_modules/normalize.css'),
-          pathTo('./node_modules/bootswatch'),
-          pathTo('./node_modules/bootstrap'),
-          include,
-        ],
-        */
       },
       {
         test: /\.styl$/i,
@@ -109,54 +99,38 @@ module.exports = env => ({
         ],
         include,
       },
+
       {
         test: assets,
-        // loader: 'file-loader?name=[path]/[name].[ext]&regExp=src/(.*)',
         loader: 'file-loader',
         options: {
-          name: `[path]/[name].[ext]?v=${version}`,
+          name: '[path]/[name].[ext]?v=' + version,
           regExp: /\/src\/(.*)/,
         },
         include,
       },
       {
         test: assets,
-        // loader: 'file-loader?name=vendors/[1]&regExp=node_modules/(.*)',
         loader: 'file-loader',
         options: {
-          name: `vendors/[1]?v=${version}`,
+          name: 'vendors/[1]?v=' + version,
           regExp: /\/node_modules\/(.*)/,
         },
         include: exclude,
       },
-    ].filter(rule => !!rule),
-  },
 
-  resolve: {
-    extensions: [
-      '.ts',
-      '.tsx',
-      '.js',
-      '.css',
-      '.styl',
-    ],
-    modules: [
-      include,
-      'node_modules',
-    ],
+    ].filter(rule => !!rule),
   },
 
   plugins: [
 
     new ProvidePlugin({
-      // 'jQuery': 'jquery', // bootstrap/dist/js/bootstrap.js required jQuery from jquery
       'React': 'react',
       'ReactDOM': 'react-dom',
     }),
 
     new LoaderOptionsPlugin({
       options: {
-        postcss: postcssLoader(env),
         minimize: isProd(env),
         debug: !isProd(env),
       },
@@ -165,58 +139,43 @@ module.exports = env => ({
     !isProd(env) ? new HotModuleReplacementPlugin(): undefined,
 
     isProd(env) ? new UglifyJsPlugin({
-      compress: {
-        warnings: false,
+      beautify: false,
+      mangle: {
         screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
+        keep_fnames: true,
       },
-      output: {
-        comments: false,
+      compress: {
+        screw_ie8: true,
+        warnings: false,
       },
-      sourceMap: true,
+      comments: false,
+      sourceMap: devtool(env) === 'source-map',
     }) : undefined,
 
     new NoEmitOnErrorsPlugin(),
 
-    new EnvironmentPlugin({ // use DefinePlugin instead
-      'NODE_ENV': env !== 'development' ? 'production' : 'development',
+    new EnvironmentPlugin({
+      'NODE_ENV': isProd(env) ? 'production' : 'development',
     }),
 
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(env !== 'development' ? env : 'development'),
+        NODE_ENV: JSON.stringify(isProd(env) ? env : 'development'),
       },
     }),
 
-    new CommonsChunkPlugin({ name: 'manifest' }),
-    new CommonsChunkPlugin({ name: 'vendors', chunks: ['app', 'vendors'], }),
-/*
-    !isProd(env) ? undefined : new AggressiveMergingPlugin(),
-    new AggressiveSplittingPlugin({
-      minSize: 30000,
-      maxSize: 50000,
+    new CommonsChunkPlugin({
+      names: ['app', 'vendors', 'polyfills', 'manifest'],
     }),
-*/
+
     new HtmlWebpackPlugin({
       inject: true,
       cache: true,
       showErrors: true,
       excludeChunks: [],
       xhtml: true,
-      // chunks: [
-      //   'vendors',
-      //   'app',
-      // ],
-      // // chunksSortMode: 'dependency',
       template: './src/index.html',
-      minify: env !== 'development' ? {
+      minify: isProd(env) ? {
         collapseWhitespace: true,
         removeComments: true,
         minifyCSS: true,
@@ -232,22 +191,30 @@ module.exports = env => ({
       defaultAttribute: 'defer',
     }),
 
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'static'
-    // }),
-
   ].filter(plugin => !!plugin),
 
-  devtool: 'source-map',
+  resolve: {
+    extensions: [
+      '.ts',
+      '.tsx',
+      '.js',
+      '.css',
+      '.styl',
+    ],
+  },
+
+  devtool: devtool(env),
 
   devServer: {
     port: 8000,
-    hot: !isProd(env),
+    noInfo: false,
     stats: 'minimal',
-    contentBase: './src',
+    host: 'localhost',
+    hot: !isProd(env),
     historyApiFallback: true,
+    contentBase: pathTo('./dist'),
   },
-
+/*
   node: {
     console: true,
     fs: 'empty',
@@ -263,4 +230,5 @@ module.exports = env => ({
 
   bail: true,
   profile: 'web',
+*/
 });

@@ -1,4 +1,4 @@
-# typescript-webpack2 [![build](https://travis-ci.org/daggerok/react.svg?branch=typescript-webpack2)](https://travis-ci.org/daggerok/react)
+# typescript-react-redux-vscode-tsx [![build](https://travis-ci.org/daggerok/react.svg?branch=typescript-react-redux-vscode-tsx)](https://travis-ci.org/daggerok/react)
 
 ```bash
 yarn install
