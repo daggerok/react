@@ -1,11 +1,5 @@
-import { isNotValid } from '../../common/util';
+import { isNotValid } from '../common/util';
 import { actionTypes } from './actionTypes';
-/** numbers action types */
-export const actionTypes = Object.freeze({
-  ADD: 'ADD',
-  UPDATE: 'UPDATE',
-  DELETE: 'DELETE',
-});
 
 /** numbers reducer */
 export const reducer = (state = [], action) => {

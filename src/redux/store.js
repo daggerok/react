@@ -6,20 +6,23 @@ export const store = createStore(reducer);
 
 /** sum dispatcher helpers */
 import { actionTypes as sumActionTypes } from './reducers/sum/actionTypes';
-import { optional } from './common/util';
+import { optional } from './reducers/common/util';
 
 export const dispatchPlus = value => store.dispatch({
   type: sumActionTypes.PLUS,
   value: optional(value),
 });
+
 export const dispatchMinus = value => store.dispatch({
   type: sumActionTypes.MINUS,
   value: optional(value),
 });
+
 export const dispatchDiv = value => store.dispatch({
   type: sumActionTypes.DIV,
   value: optional(value),
 });
+
 export const dispatchMult = value => store.dispatch({
   type: sumActionTypes.MULT,
   value: optional(value),
@@ -32,11 +35,13 @@ export const dispatchAdd = value => store.dispatch({
   type: numbersActionTypes.ADD,
   value,
 });
+
 export const dispatchUpdate = (id, value) => store.dispatch({
   type: numbersActionTypes.UPDATE,
   id,
   value,
 });
+
 export const dispatchDelete = id => store.dispatch({
   type: numbersActionTypes.DELETE,
   id,
