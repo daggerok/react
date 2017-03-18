@@ -23,7 +23,19 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const babel = {
   presets: [
-    [ 'es2015', { modules: false } ],
+    [ 'env', {
+      'targets': {
+        'browsers': [
+          'last 4 versions',
+          'ie >= 7'
+        ],
+        'node': [
+          6,
+          7,
+          'current'
+        ]
+      }
+    } ],
     'stage-0',
     'react',
   ],
