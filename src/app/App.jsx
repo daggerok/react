@@ -1,13 +1,5 @@
 import React from 'react';
 
-import {
-  store,
-  dispatchPlus,
-  dispatchMinus,
-  dispatchDiv,
-  dispatchMult,
-} from './redux/store';
-
 export default class ReduceRedux extends React.Component {
 
   state = {
@@ -16,6 +8,7 @@ export default class ReduceRedux extends React.Component {
   };
 
   componentDidMount() {
+    const { store } = this.props;
     this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
   }
 
@@ -32,6 +25,14 @@ export default class ReduceRedux extends React.Component {
   }
 
   render() {
+
+    const {
+      dispatchPlus,
+      dispatchMinus,
+      dispatchDiv,
+      dispatchMult,
+    } = this.props;
+
     return (
       <div>
         <h4>sum store</h4>
