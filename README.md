@@ -1,12 +1,8 @@
-# react-redux-vscode-jsx [![build](https://travis-ci.org/daggerok/react.svg?branch=react-redux-vscode-jsx)](https://travis-ci.org/daggerok/react)
+# oauth2-client [![build](https://travis-ci.org/daggerok/react.svg?branch=oauth2-client)](https://travis-ci.org/daggerok/react)
 
-stack:
-- react
-- redux
-  - store
-  - reducer
-  - actions
-  - types
+example of authorizing app and getting data using oauth2 secured web client
+
+part of the [![secured-app](https://travis-ci.org/daggerok/oauth2-client.svg?branch=master)](https://travis-ci.org/daggerok/secured-app)
 
 use yarn
 
@@ -16,7 +12,6 @@ yarn start
 yarn compile
 yarn build
 yarn serve
-yarn ghpages
 ```
 
 npm update versions

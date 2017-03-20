@@ -1,5 +1,5 @@
 module.exports = {
   server: {
-    baseDir: './dist',
+    baseDir: require('./webpack.config')('whatever').output.path,
   },
 };

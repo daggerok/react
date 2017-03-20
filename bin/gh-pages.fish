@@ -15,4 +15,4 @@ git rm -r dist --cached
 sed -i -e 's/^#dist\/$/dist\//g' .gitignore
 git add .
 git commit --amend --no-edit
-git push origin react-redux-vscode-jsx --force
+git push origin oauth2-client --force

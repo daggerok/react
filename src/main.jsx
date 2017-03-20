@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import * as props from './redux/store'
-import App from './app/App';
+import SecuredWebClient from './oauth2/secured-client';
 
 render(
-  <App {...props}/>,
+  <SecuredWebClient/>,
   document.querySelector('#app')
 );
