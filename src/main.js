@@ -2,11 +2,11 @@ import './assets';
 import React from 'react';
 import { render } from 'react-dom';
 import {
-  Router,
   Route,
-  IndexRoute,
-  browserHistory
-} from 'react-router';
+  Switch,
+  Redirect,
+  BrowserRouter as Router,
+} from 'react-router-dom';
 import { href } from './services/base-href.service';
 import NotFound from './components/not-found.component';
 import Main from './components/main.component';
@@ -54,13 +54,13 @@ class App extends React.Component {
 
 // bootstrap
 render(
-  <Router history={browserHistory}>
-    <Route path={href} component={App}>
-      <IndexRoute component={Main}/>
-      <Route path='home' component={Main}/>
-      <Route path='*' component={NotFound}/>
-    </Route>
-    <Route path='*' component={NotFound}/>
+  <Router basename={href}>
+    <Switch>
+      <Route path='' component={App}/>
+      <Route exact={true} path='/main' component={Main}/>
+      <Redirect from='/home' to='/main'/>
+      <Route component={NotFound}/>
+    </Switch>
   </Router>,
   document.getElementById('app')
 );

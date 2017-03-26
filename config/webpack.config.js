@@ -48,8 +48,8 @@ const babel = {
   ],
 };
 
-const { resolve } = require('path');
-const pathTo = rel => resolve(process.cwd(), rel);
+const { join } = require('path');
+const pathTo = rel => join(process.cwd(), rel);
 
 const isProd = env => env !== 'development';
 const minimize = env => isProd(env) ? '&minimize' : '';
@@ -141,6 +141,8 @@ const proxy = () => ({
 });
 
 module.exports = env => ({
+
+  context: pathTo('.'),
 
   entry: {
     polyfills: './src/polyfills.js',
@@ -261,10 +263,6 @@ module.exports = env => ({
       '.styl',
       '.hbs',
     ],
-    modules: [
-      pathTo('./src'),
-      'node_modules',
-    ],
   },
 
   plugins: [
@@ -277,7 +275,6 @@ module.exports = env => ({
 
     new LoaderOptionsPlugin({
       options: {
-        content: pathTo('.'),
         babel,
         postcss: [
           precss,
@@ -413,7 +410,7 @@ module.exports = env => ({
     //     green: '\u001b[32m',
     //   }
     // },
-    contentBase: pathTo('./src'),
+    contentBase: pathTo('./dist'),
     // historyApiFallback: true,
     historyApiFallback: {
       index: publicPath(env),
