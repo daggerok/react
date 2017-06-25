@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import './index.css';
-import Provider from './Provider.jsx';
+import Provider from './Provider';
 
 ReactDOM.render(
   Provider(),
