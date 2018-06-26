@@ -1,25 +1,29 @@
-group: edge
-dist: trusty
 language: node_js
-node_js:
-  - 6
-  - 7
-install: true
+node_js: lts/*
+
+addons:
+  apt:
+    update: true
+    packages:
+    - libappindicator1
+    - fonts-liberation
+    - google-chrome-stable
+
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt update
-  - sudo apt install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+
+install: true
+
 script:
-  - npm i
-  - npm update
-  - npm run build
-  - npm run ghpages
-  - npm run compile
-  - if [ -f npm-debug.log ]; then cat npm-debug.log; fi
+- npm i
+- npm update
+- npm run build
+- npm run ghpages
+- npm run compile
+- if [ -f npm-debug.log ]; then cat npm-debug.log; fi
+
 cache:
   directories:
-    - node_modules
+  - node_modules
